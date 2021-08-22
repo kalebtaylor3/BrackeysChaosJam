@@ -365,7 +365,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a400dad4249a324c9f4fdc9e35a499d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DelayAmount: 5
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -598,6 +597,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52fca5db7785bc47a407b6dcc26536c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waves: 0
+  RoundLenght: 5
 --- !u!4 &948059820
 Transform:
   m_ObjectHideFlags: 0
@@ -641,7 +642,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114069812}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 077de7319dc7de6418bd491283a5df0c, type: 3}
   m_Name: 
@@ -734,6 +735,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef21858a92de5ee45abd9dcffe3616b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whereToStop: 0
+  speed: 4
 --- !u!114 &1114069819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -763,7 +766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1130559291
 Transform:
   m_ObjectHideFlags: 0

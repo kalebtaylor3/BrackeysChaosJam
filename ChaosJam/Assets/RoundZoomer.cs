@@ -5,41 +5,23 @@ using System;
 
 public class RoundZoomer : MonoBehaviour
 {
-    [HideInInspector]
-    public int waves;
-
-    Vector3 pos;
-
     Camera main;
-
-    protected float Timer = 0;
-
-    public int DelayAmount = 25;
-
-    public static event Action<RoundZoomer> OnWave;
 
     // Start is called before the first frame update
     void Start()
     {
-        waves = 0;
-        pos = transform.position;
         main = GetComponent<Camera>();
+        main.orthographicSize = 6;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
+        WaveController.OnWave += CheckWave;
+    }
 
-        Timer += Time.deltaTime;
-
-        if(Timer >= DelayAmount)
-        {
-            Timer = 0;
-            //waves++;
-            OnWave?.Invoke(this);
-        }
-
-        switch (waves)
+    void CheckWave(int wave)
+    {
+        switch (wave)
         {
             case 0:
                 Debug.Log("Wave 1");

@@ -1,16 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class WaveController : MonoBehaviour
 {
-    private void OnEnable()
-    {
-        RoundZoomer.OnWave += IncreaseWave;
-    }
+    public static event Action<int> OnWave;
+    public int waves;
+    private float Timer;
+    public float RoundLenght;
 
-    void IncreaseWave(RoundZoomer wave)
+    private void Update()
     {
-        wave.waves++;
+        OnWave?.Invoke(waves);
+        Timer += Time.deltaTime;
+
+        if (Timer >= RoundLenght)
+        {
+            Timer = 0;
+            waves++;
+        }
     }
 }
