@@ -161,6 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 361361728}
   - component: {fileID: 361361727}
+  - component: {fileID: 361361729}
   m_Layer: 0
   m_Name: StartingPlayer
   m_TagString: Player
@@ -232,6 +233,18 @@ Transform:
   m_Father: {fileID: 1892551611}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &361361729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361361726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c355026cd9658fb4d8aec4cff7be190b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &368269359
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,6 +579,8 @@ GameObject:
   - component: {fileID: 1114069816}
   - component: {fileID: 1114069815}
   - component: {fileID: 1114069814}
+  - component: {fileID: 1114069819}
+  - component: {fileID: 1114069818}
   - component: {fileID: 1114069813}
   m_Layer: 0
   m_Name: Zombie
@@ -656,12 +671,36 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114069812}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.32, y: -9.64, z: 0}
+  m_LocalPosition: {x: -14.22, y: -30.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1114069818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114069812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef21858a92de5ee45abd9dcffe3616b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1114069819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114069812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0ad5af44520be4a8609f9eec024e7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1130559290
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,9 +711,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1130559291}
   - component: {fileID: 1130559292}
+  - component: {fileID: 1130559293}
   m_Layer: 0
   m_Name: FourthPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -687,7 +727,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130559290}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.29, y: -11.73, z: -10.277832}
+  m_LocalPosition: {x: 2.29, y: -11.73, z: -10.27783}
   m_LocalScale: {x: 0.25858, y: 0.25858, z: 0.25858}
   m_Children: []
   m_Father: {fileID: 1892551611}
@@ -743,6 +783,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1130559293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130559290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c355026cd9658fb4d8aec4cff7be190b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1253880960
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,7 +947,7 @@ GameObject:
   - component: {fileID: 1892551611}
   m_Layer: 0
   m_Name: Players
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
