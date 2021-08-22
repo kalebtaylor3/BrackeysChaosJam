@@ -473,7 +473,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 19
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 651955980}
   m_Layer: 0
   m_Name: SecondPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -666,10 +666,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves: 0
-  RoundLenght: 10
-  spawnTime: 3
-  spawnLenght: 9
-  spawnDelay: 3
+  RoundLenght: 2
+  spawnTime: 1
+  spawnLenght: 1
+  spawnDelay: 0.5
 --- !u!4 &948059820
 Transform:
   m_ObjectHideFlags: 0
@@ -852,7 +852,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130559290}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.29, y: -10.62, z: -10.27783}
+  m_LocalPosition: {x: 2.29, y: -12.11, z: -10.27783}
   m_LocalScale: {x: 0.63061273, y: 0.63061273, z: 0.63061273}
   m_Children: []
   m_Father: {fileID: 1892551611}
@@ -993,7 +993,7 @@ GameObject:
   - component: {fileID: 1499793948}
   m_Layer: 0
   m_Name: ThirdPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1006,7 +1006,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499793945}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.83, y: 12.54, z: -10.277832}
+  m_LocalPosition: {x: -14.62, y: 12.54, z: -10.277832}
   m_LocalScale: {x: 0.63061273, y: 0.63061273, z: 0.63061273}
   m_Children: []
   m_Father: {fileID: 1892551611}
@@ -1245,7 +1245,7 @@ GameObject:
   - component: {fileID: 2116772020}
   m_Layer: 0
   m_Name: FithPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1258,7 +1258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2116772017}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -17.25, y: -0, z: -10.277832}
+  m_LocalPosition: {x: -20.03, y: -0, z: -10.277832}
   m_LocalScale: {x: 0.63061273, y: 0.63061273, z: 0.63061273}
   m_Children: []
   m_Father: {fileID: 1892551611}

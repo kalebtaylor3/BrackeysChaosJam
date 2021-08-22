@@ -39,7 +39,7 @@ public class PlayerActivator : MonoBehaviour
             case 7:
                 Players[3].SetActive(true);
                 break;
-            case 9:
+            case 8:
                 Players[4].SetActive(true);
                 break;
         }
