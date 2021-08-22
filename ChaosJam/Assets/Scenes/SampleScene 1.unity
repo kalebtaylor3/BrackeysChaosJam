@@ -548,6 +548,8 @@ GameObject:
   m_Component:
   - component: {fileID: 948059820}
   - component: {fileID: 948059819}
+  - component: {fileID: 948059821}
+  - component: {fileID: 948059822}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -569,17 +571,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves: 0
   RoundLenght: 40
-  spawnTime: 2
+  spawnTime: 3
   spawnLenght: 30
-  Enemy: {fileID: 4378075312236730732, guid: 4f55bc3ac47dbb0409d595adee46bb64, type: 3}
-  LeftSpawns:
-  - {fileID: 296771671}
-  - {fileID: 1431235750}
-  RightSpawns:
-  - {fileID: 1994056776}
-  - {fileID: 1942422316}
-  TopSpawns: []
-  BottomSpawns: []
 --- !u!4 &948059820
 Transform:
   m_ObjectHideFlags: 0
@@ -594,6 +587,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &948059821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948059818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af601ede7005444488216c5b037944ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 4378075312236730732, guid: 4f55bc3ac47dbb0409d595adee46bb64, type: 3}
+  LeftSpawns:
+  - {fileID: 296771671}
+  - {fileID: 1431235750}
+  RightSpawns:
+  - {fileID: 1994056776}
+  - {fileID: 1942422316}
+--- !u!114 &948059822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948059818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 843d63c0cfd88ae4a833357392eff1c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1130559290
 GameObject:
   m_ObjectHideFlags: 0

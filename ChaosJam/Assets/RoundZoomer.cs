@@ -18,6 +18,10 @@ public class RoundZoomer : MonoBehaviour
     {
         WaveController.OnWave += CheckWave;
     }
+    private void OnDisable()
+    {
+        WaveController.OnWave -= CheckWave;
+    }
 
     void CheckWave(int wave)
     {
