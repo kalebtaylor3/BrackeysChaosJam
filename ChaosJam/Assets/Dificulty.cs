@@ -23,6 +23,7 @@ public class Dificulty : MonoBehaviour
         stats.RoundLenght = stats.RoundLenght * IncreaseMultuplier;
         stats.spawnTime = stats.spawnTime * DecreaseMultiplier;
         stats.spawnLenght = stats.spawnLenght * IncreaseMultuplier;
+        stats.spawnDelay = stats.spawnDelay * IncreaseMultuplier;
 
         Debug.Log(stats.spawnLenght);
     }
