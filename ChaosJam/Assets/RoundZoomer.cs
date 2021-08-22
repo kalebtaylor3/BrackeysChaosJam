@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class RoundZoomer : MonoBehaviour
 {
-
-    private int waves;
+    [HideInInspector]
+    public int waves;
 
     Vector3 pos;
 
@@ -14,6 +15,8 @@ public class RoundZoomer : MonoBehaviour
     protected float Timer = 0;
 
     public int DelayAmount = 25;
+
+    public static event Action<RoundZoomer> OnWave;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +35,8 @@ public class RoundZoomer : MonoBehaviour
         if(Timer >= DelayAmount)
         {
             Timer = 0;
-            waves++;
+            //waves++;
+            OnWave?.Invoke(this);
         }
 
         switch (waves)

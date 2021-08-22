@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class WaveController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        
+        RoundZoomer.OnWave += IncreaseWave;
     }
 
-    // Update is called once per frame
-    void Update()
+    void IncreaseWave(RoundZoomer wave)
     {
-      
+        wave.waves++;
     }
 }

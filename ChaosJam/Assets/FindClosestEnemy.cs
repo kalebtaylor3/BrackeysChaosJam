@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class FindClosestEnemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
+    public float whereToStop;
+    public float speed;
 
     // Update is called once per frame
     void Update()
@@ -30,6 +28,11 @@ public class FindClosestEnemy : MonoBehaviour
                 distanceToClosestEnemy = distancetoEnemy;
                 closestEnemy = currentEnemy;
             }
+        }
+
+        if (Vector2.Distance(transform.position, closestEnemy.transform.position) > whereToStop)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, closestEnemy.transform.position, speed * Time.deltaTime);
         }
 
         Debug.DrawLine(this.transform.position, closestEnemy.transform.position);
