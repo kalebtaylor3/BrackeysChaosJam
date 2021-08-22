@@ -514,6 +514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 651955979}
   - component: {fileID: 651955978}
+  - component: {fileID: 651955980}
   m_Layer: 0
   m_Name: SecondPlayer
   m_TagString: Untagged
@@ -585,6 +586,18 @@ Transform:
   m_Father: {fileID: 1892551611}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &651955980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651955977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c355026cd9658fb4d8aec4cff7be190b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &925535634
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,10 +666,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves: 0
-  RoundLenght: 40
+  RoundLenght: 10
   spawnTime: 3
-  spawnLenght: 35
-  spawnDelay: 10
+  spawnLenght: 9
+  spawnDelay: 3
 --- !u!4 &948059820
 Transform:
   m_ObjectHideFlags: 0
@@ -977,6 +990,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1499793946}
   - component: {fileID: 1499793947}
+  - component: {fileID: 1499793948}
   m_Layer: 0
   m_Name: ThirdPlayer
   m_TagString: Untagged
@@ -1048,6 +1062,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1499793948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499793945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c355026cd9658fb4d8aec4cff7be190b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1629067458
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,6 +1242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2116772018}
   - component: {fileID: 2116772019}
+  - component: {fileID: 2116772020}
   m_Layer: 0
   m_Name: FithPlayer
   m_TagString: Untagged
@@ -1287,6 +1314,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2116772020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116772017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c355026cd9658fb4d8aec4cff7be190b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4378075311193997912
 PrefabInstance:
   m_ObjectHideFlags: 0
