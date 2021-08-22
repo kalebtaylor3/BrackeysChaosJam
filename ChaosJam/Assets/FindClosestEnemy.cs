@@ -27,11 +27,13 @@ public class FindClosestEnemy : MonoBehaviour
             {
                 distanceToClosestEnemy = distancetoEnemy;
                 closestEnemy = currentEnemy;
+                currentEnemy.transform.LookAt(closestEnemy.transform);
             }
         }
 
         if (Vector2.Distance(transform.position, closestEnemy.transform.position) > whereToStop)
         {
+            
             transform.position = Vector2.MoveTowards(transform.position, closestEnemy.transform.position, speed * Time.deltaTime);
         }
 

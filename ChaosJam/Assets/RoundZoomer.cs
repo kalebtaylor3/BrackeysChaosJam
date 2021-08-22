@@ -11,7 +11,7 @@ public class RoundZoomer : MonoBehaviour
     void Start()
     {
         main = GetComponent<Camera>();
-        main.orthographicSize = 6;
+        main.orthographicSize = 5;
     }
 
     private void OnEnable()
@@ -29,7 +29,7 @@ public class RoundZoomer : MonoBehaviour
         {
             case 0:
                 Debug.Log("Wave 1");
-                main.orthographicSize = 6;
+                main.orthographicSize = 5;
                 break;
             case 1:
                 main.orthographicSize = Mathf.Lerp(main.orthographicSize, 8, 0.01f);
