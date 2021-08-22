@@ -666,10 +666,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves: 0
-  RoundLenght: 2
-  spawnTime: 1
-  spawnLenght: 1
-  spawnDelay: 0.5
+  RoundLenght: 15
+  spawnTime: 3
+  spawnLenght: 14
+  spawnDelay: 4
 --- !u!4 &948059820
 Transform:
   m_ObjectHideFlags: 0
