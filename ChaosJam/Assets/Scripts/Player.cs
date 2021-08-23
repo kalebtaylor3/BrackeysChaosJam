@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     {
         healthSystem = new HealthSystem(100);
 
-        healthBarTransform = Instantiate(HealthBar, new Vector2(transform.position.x, transform.position.y + 0.5f), Quaternion.identity);
+        healthBarTransform = Instantiate(HealthBar, new Vector2(transform.position.x, transform.position.y + 0.75f), Quaternion.identity);
         HealthBar healthBar = healthBarTransform.GetComponent<HealthBar>();
         healthBar.Setup(healthSystem);
     }
