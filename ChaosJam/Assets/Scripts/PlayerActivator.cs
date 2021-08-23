@@ -6,16 +6,9 @@ using System;
 public class PlayerActivator : MonoBehaviour
 {
 
-    public GameObject[] Players;
-
-    private void Start()
-    {
-        Players[0].SetActive(false);
-        Players[1].SetActive(false);
-        Players[2].SetActive(false);
-        Players[3].SetActive(false);
-        Players[4].SetActive(false);
-    }
+    public GameObject[] Spawn;
+    public GameObject Player;
+    bool canSpawn = true;
 
     // Start is called before the first frame update
     private void OnEnable()
@@ -25,22 +18,29 @@ public class PlayerActivator : MonoBehaviour
 
     void SpawnPlayer(int wave)
     {
+        GameObject go;
+
         switch (wave)
         {
-            case 0:
-                Players[0].SetActive(true);
-                break;
             case 2:
-                Players[1].SetActive(true);
+                if (canSpawn)
+                {
+                    go = Instantiate(Player, Spawn[0].transform.position, Quaternion.identity);
+                    go.transform.SetParent(Spawn[0].transform);
+                    canSpawn = false;
+                }
                 break;
-            case 5:
-                Players[2].SetActive(true);
+            case 4:
+                go = Instantiate(Player, Spawn[1].transform.position, Quaternion.identity);
+                go.transform.SetParent(Spawn[1].transform);
                 break;
-            case 7:
-                Players[3].SetActive(true);
+            case 6:
+                go = Instantiate(Player, Spawn[2].transform.position, Quaternion.identity);
+                go.transform.SetParent(Spawn[2].transform);
                 break;
             case 8:
-                Players[4].SetActive(true);
+                go = Instantiate(Player, Spawn[3].transform.position, Quaternion.identity);
+                go.transform.SetParent(Spawn[3].transform);
                 break;
         }
     }
