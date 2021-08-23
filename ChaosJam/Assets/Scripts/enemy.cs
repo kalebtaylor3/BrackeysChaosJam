@@ -7,10 +7,11 @@ public class enemy : MonoBehaviour
 
     public Transform HealthBar;
     Transform healthBarTransform;
+    HealthSystem healthSystem;
     // Start is called before the first frame update
     void Start()
     {
-        HealthSystem healthSystem = new HealthSystem(100);
+        healthSystem = new HealthSystem(100);
 
         healthBarTransform = Instantiate(HealthBar, new Vector2(transform.position.x, transform.position.y + 1), Quaternion.identity);
         HealthBar healthBar = healthBarTransform.GetComponent<HealthBar>();
@@ -21,5 +22,10 @@ public class enemy : MonoBehaviour
     void Update()
     {
         healthBarTransform.position = new Vector2(transform.position.x, transform.position.y + 1.5f);
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            healthSystem.Damage(10);
+        }
     }
 }
