@@ -30,17 +30,38 @@ public class PlayerActivator : MonoBehaviour
                     canSpawn = false;
                 }
                 break;
+            case 3:
+                canSpawn = true;
+                break;
             case 4:
-                go = Instantiate(Player, Spawn[1].transform.position, Quaternion.identity);
-                go.transform.SetParent(Spawn[1].transform);
+                if (canSpawn)
+                {
+                    go = Instantiate(Player, Spawn[1].transform.position, Quaternion.identity);
+                    go.transform.SetParent(Spawn[1].transform);
+                    canSpawn = false;
+                }
+                break;
+            case 5:
+                canSpawn = true;
                 break;
             case 6:
-                go = Instantiate(Player, Spawn[2].transform.position, Quaternion.identity);
-                go.transform.SetParent(Spawn[2].transform);
+                if (canSpawn)
+                {
+                    go = Instantiate(Player, Spawn[2].transform.position, Quaternion.identity);
+                    go.transform.SetParent(Spawn[2].transform);
+                    canSpawn = false;
+                }
+                break;
+            case 7:
+                canSpawn = true;
                 break;
             case 8:
-                go = Instantiate(Player, Spawn[3].transform.position, Quaternion.identity);
-                go.transform.SetParent(Spawn[3].transform);
+                if (canSpawn)
+                {
+                    go = Instantiate(Player, Spawn[3].transform.position, Quaternion.identity);
+                    go.transform.SetParent(Spawn[3].transform);
+                    canSpawn = false;
+                }
                 break;
         }
     }

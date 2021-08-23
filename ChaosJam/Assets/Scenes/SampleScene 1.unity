@@ -485,10 +485,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves: 0
-  RoundLenght: 5
+  RoundLenght: 20
   spawnTime: 3
-  spawnLenght: 4
-  spawnDelay: 1
+  spawnLenght: 19
+  spawnDelay: 4
 --- !u!4 &948059820
 Transform:
   m_ObjectHideFlags: 0
