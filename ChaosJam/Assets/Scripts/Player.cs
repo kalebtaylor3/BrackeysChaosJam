@@ -18,9 +18,11 @@ public class Player : MonoBehaviour
         healthBar.Setup(healthSystem);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.tag == "Enemy")
+        {
+            healthSystem.Damage(20);
+        }
     }
 }

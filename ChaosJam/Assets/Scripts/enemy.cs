@@ -13,7 +13,7 @@ public class enemy : MonoBehaviour
     {
         healthSystem = new HealthSystem(100);
 
-        healthBarTransform = Instantiate(HealthBar, new Vector2(transform.position.x, transform.position.y + 1), Quaternion.identity);
+        healthBarTransform = Instantiate(HealthBar, new Vector2(transform.position.x, transform.position.y + 0.75f), Quaternion.identity);
         HealthBar healthBar = healthBarTransform.GetComponent<HealthBar>();
         healthBar.Setup(healthSystem);
     }
@@ -21,7 +21,7 @@ public class enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBarTransform.position = new Vector2(transform.position.x, transform.position.y + 1.5f);
+        healthBarTransform.position = new Vector2(transform.position.x, transform.position.y + 1);
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
