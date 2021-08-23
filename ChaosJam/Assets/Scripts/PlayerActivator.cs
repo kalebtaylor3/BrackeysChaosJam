@@ -16,6 +16,11 @@ public class PlayerActivator : MonoBehaviour
         WaveController.OnWave += SpawnPlayer;
     }
 
+    private void OnDisable()
+    {
+        WaveController.OnWave -= SpawnPlayer;
+    }
+
     void SpawnPlayer(int wave)
     {
         GameObject go;
