@@ -14,15 +14,25 @@ public class Player : MonoBehaviour
         healthSystem = new HealthSystem(100);
 
         healthBarTransform = Instantiate(HealthBar, new Vector2(transform.position.x, transform.position.y + 0.75f), Quaternion.identity);
+        healthBarTransform.SetParent(this.transform);
         HealthBar healthBar = healthBarTransform.GetComponent<HealthBar>();
         healthBar.Setup(healthSystem);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Update()
+    {
+        if (healthSystem.GetHealth() == 0)
+        {
+            Debug.Log("Dead Af");
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            healthSystem.Damage(20);
+            healthSystem.Damage(0.75f);
         }
     }
 }

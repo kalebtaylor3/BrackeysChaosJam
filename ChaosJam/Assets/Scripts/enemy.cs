@@ -14,6 +14,7 @@ public class enemy : MonoBehaviour
         healthSystem = new HealthSystem(100);
 
         healthBarTransform = Instantiate(HealthBar, new Vector2(transform.position.x, transform.position.y + 0.75f), Quaternion.identity);
+        healthBarTransform.SetParent(this.transform);
         HealthBar healthBar = healthBarTransform.GetComponent<HealthBar>();
         healthBar.Setup(healthSystem);
     }
@@ -26,6 +27,21 @@ public class enemy : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             healthSystem.Damage(10);
+        }
+
+        if(healthSystem.GetHealth() == 0)
+        {
+            Debug.Log("Dead Af");
+            Destroy(this.gameObject);
+        }
+
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Wall")
+        {
+            healthSystem.Damage(0.55f);
         }
     }
 }

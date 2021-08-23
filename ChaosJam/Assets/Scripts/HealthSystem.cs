@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class HealthSystem
 {
-    private int health;
-    private int healthMax;
+    private float health;
+    private float healthMax;
 
     public HealthSystem(int healthMax)
     {
@@ -13,20 +13,8 @@ public class HealthSystem
         health = healthMax;
         
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     
-    public int GetHealth()
+    public float GetHealth()
     {
         return health;
     }
@@ -36,7 +24,7 @@ public class HealthSystem
         return (float)health / healthMax;
     }
 
-    public void Damage(int damageAmount)
+    public void Damage(float damageAmount)
     {
         health -= damageAmount;
         if (health < 0) health = 0;
