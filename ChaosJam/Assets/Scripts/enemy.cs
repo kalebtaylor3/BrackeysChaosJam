@@ -39,7 +39,7 @@ public class enemy : MonoBehaviour
         if(healthSystem.GetHealth() == 0)
         {
             Debug.Log("Dead Af");
-            Destroy(holder.gameObject);
+            StartCoroutine(Die());
         }
 
     }
@@ -49,6 +49,12 @@ public class enemy : MonoBehaviour
         healthSystem.Damage(20);
     }
 
+
+    IEnumerator Die()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(holder.gameObject);
+    }    
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Wall")
