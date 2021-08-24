@@ -37,7 +37,7 @@ public class WaveController : MonoBehaviour
                 OnDifficulty?.Invoke(this);
             }
 
-            if (SpawnTimer >= spawnTime && Timer < spawnLenght && spawnCounter > spawnDelay)
+            if (SpawnTimer >= spawnTime && Timer < spawnLenght && spawnCounter > spawnDelay && waves <= 10)
             {
                 SpawnTimer = 0;
                 //SpawnEnemy();

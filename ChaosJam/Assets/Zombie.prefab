@@ -51,6 +51,7 @@ MonoBehaviour:
   HealthBar: {fileID: 3192556335411780022, guid: 0e05b36258648ff4ab2f0a8a91b6e70c,
     type: 3}
   animations: {fileID: 1481790262444404329}
+  holder: {fileID: 0}
 --- !u!114 &311994611768779419
 MonoBehaviour:
   m_ObjectHideFlags: 0

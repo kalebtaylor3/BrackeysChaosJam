@@ -11,6 +11,7 @@ public class enemy : MonoBehaviour
     HealthSystem healthSystem;
     public Animator animations;
     public Transform holder;
+    public static event Action<int> OnDeath;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +40,8 @@ public class enemy : MonoBehaviour
         if(healthSystem.GetHealth() == 0)
         {
             Debug.Log("Dead Af");
-            StartCoroutine(Die());
+            OnDeath?.Invoke(10);
+            Destroy(holder.gameObject);
         }
 
     }
@@ -49,12 +51,6 @@ public class enemy : MonoBehaviour
         healthSystem.Damage(20);
     }
 
-
-    IEnumerator Die()
-    {
-        yield return new WaitForSeconds(2);
-        Destroy(holder.gameObject);
-    }    
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Wall")
@@ -65,6 +61,7 @@ public class enemy : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
+            healthSystem.Damage(0.85f);
             animations.SetBool("Attacking", true);
         }
     }
