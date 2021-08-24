@@ -7,6 +7,7 @@ public class WaveController : MonoBehaviour
 {
     public static event Action<int> OnWave;
     public static event Action OnEnemy;
+    public static event Action OnBoss;
     public static event Action<WaveController> OnDifficulty;
 
 
@@ -51,6 +52,7 @@ public class WaveController : MonoBehaviour
                 if(waves == 10)
                 {
                     //spawn boss
+
                 }
             }
         }
