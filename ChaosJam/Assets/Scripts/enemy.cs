@@ -10,13 +10,14 @@ public class enemy : MonoBehaviour
     Transform healthBarTransform;
     HealthSystem healthSystem;
     public Animator animations;
+    public Transform holder;
     // Start is called before the first frame update
     void Start()
     {
         healthSystem = new HealthSystem(100);
 
         healthBarTransform = Instantiate(HealthBar, new Vector2(transform.position.x, transform.position.y + 0.75f), Quaternion.identity);
-        healthBarTransform.SetParent(this.transform);
+        healthBarTransform.SetParent(holder);
         HealthBar healthBar = healthBarTransform.GetComponent<HealthBar>();
         healthBar.Setup(healthSystem);
     }
