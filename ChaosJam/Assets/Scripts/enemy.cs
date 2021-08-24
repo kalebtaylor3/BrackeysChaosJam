@@ -23,7 +23,7 @@ public class enemy : MonoBehaviour
     }
     private void OnEnable()
     {
-        Bullet.OnBullet += TakeDamage;
+        //Bullet.OnBullet += TakeDamage;
     }
 
     // Update is called once per frame
