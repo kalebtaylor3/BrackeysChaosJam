@@ -9,6 +9,7 @@ public class enemy : MonoBehaviour
     public Transform HealthBar;
     Transform healthBarTransform;
     HealthSystem healthSystem;
+    public Animator animations;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +53,17 @@ public class enemy : MonoBehaviour
         if (collision.gameObject.tag == "Wall")
         {
             healthSystem.Damage(0.55f);
+            animations.SetBool("Attacking", true);
         }
+
+        if (collision.gameObject.tag == "Player")
+        {
+            animations.SetBool("Attacking", true);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        animations.SetBool("Attacking", false);
     }
 }

@@ -121,6 +121,38 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &152171478 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2825750698979864172, guid: 2d5bb49177637954483bc1856a3586db,
+    type: 3}
+  m_PrefabInstance: {fileID: 2825750698863386042}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &152171483
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152171478}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.84, y: 3.74}
+    newSize: {x: 5.84, y: 3.74}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.84, y: 3.74}
+  m_EdgeRadius: 0
 --- !u!1001 &236405295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1094,6 +1126,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6158402710303960858, guid: 9be057c91da7d8a418538d0ff3b70626,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6158402710303960859, guid: 9be057c91da7d8a418538d0ff3b70626,
         type: 3}
       propertyPath: m_Name
@@ -1482,6 +1519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2116607764}
   - component: {fileID: 2116607763}
+  - component: {fileID: 2116607765}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -1523,6 +1561,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &2116607765
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116607762}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3
 --- !u!1 &2116772017
 GameObject:
   m_ObjectHideFlags: 0

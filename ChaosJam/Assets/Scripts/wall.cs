@@ -14,7 +14,7 @@ public class wall : MonoBehaviour
     {
         healthSystem = new HealthSystem(100);
 
-        healthBarTransform = Instantiate(HealthBar, new Vector2(transform.position.x, transform.position.y + 0.75f), Quaternion.identity);
+        healthBarTransform = Instantiate(HealthBar, new Vector2(transform.position.x, transform.position.y + 0.35f), Quaternion.identity);
         healthBarTransform.SetParent(this.transform);
         HealthBar healthBar = healthBarTransform.GetComponent<HealthBar>();
         healthBar.Setup(healthSystem);
