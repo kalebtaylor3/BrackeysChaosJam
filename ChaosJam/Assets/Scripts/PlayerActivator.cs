@@ -10,6 +10,8 @@ public class PlayerActivator : MonoBehaviour
     public GameObject Player;
     bool canSpawn = true;
 
+    public static event Action OnSpawn;
+
     // Start is called before the first frame update
     private void OnEnable()
     {
@@ -32,6 +34,7 @@ public class PlayerActivator : MonoBehaviour
                 {
                     go = Instantiate(Player, Spawn[0].transform.position, Quaternion.identity);
                     go.transform.SetParent(Spawn[0].transform);
+                    OnSpawn?.Invoke();
                     canSpawn = false;
                 }
                 break;
@@ -43,6 +46,7 @@ public class PlayerActivator : MonoBehaviour
                 {
                     go = Instantiate(Player, Spawn[1].transform.position, Quaternion.identity);
                     go.transform.SetParent(Spawn[1].transform);
+                    OnSpawn?.Invoke();
                     canSpawn = false;
                 }
                 break;
@@ -54,6 +58,7 @@ public class PlayerActivator : MonoBehaviour
                 {
                     go = Instantiate(Player, Spawn[2].transform.position, Quaternion.identity);
                     go.transform.SetParent(Spawn[2].transform);
+                    OnSpawn?.Invoke();
                     canSpawn = false;
                 }
                 break;
@@ -65,6 +70,7 @@ public class PlayerActivator : MonoBehaviour
                 {
                     go = Instantiate(Player, Spawn[3].transform.position, Quaternion.identity);
                     go.transform.SetParent(Spawn[3].transform);
+                    OnSpawn?.Invoke();
                     canSpawn = false;
                 }
                 break;

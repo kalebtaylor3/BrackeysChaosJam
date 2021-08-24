@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class wall : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class wall : MonoBehaviour
     Transform healthBarTransform;
     HealthSystem healthSystem;
     bool repairMode = true;
+    public static event Action<int, HealthSystem> UseResources;
+    public static event Action OnHover;
+    public static event Action OffHover;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,14 +43,32 @@ public class wall : MonoBehaviour
 
     private void OnMouseDown()
     {
-        healthSystem.RepairHealth();
         if (repairMode)
-            healthSystem.RepairHealth();
+        {
+            UseResources?.Invoke(5, healthSystem);
+        }
     }
 
     private void OnMouseEnter()
     {
         if (repairMode)
-            Debug.Log("click to repair");
+        {
+            OnHover?.Invoke();
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        OffHover?.Invoke();
+    }
+
+    void RepairMode()
+    {
+        repairMode = true;
+    }
+
+    void otherModes()
+    {
+        repairMode = false;
     }
 }
