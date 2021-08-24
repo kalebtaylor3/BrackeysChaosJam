@@ -30,10 +30,5 @@ public class HealthSystem
         if (health < 0) health = 0;
     }
 
-    public void RepairHealth()
-    {
-        health = healthMax;
-    }
-
     
 }
