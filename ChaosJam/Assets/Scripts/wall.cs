@@ -43,4 +43,10 @@ public class wall : MonoBehaviour
         if (repairMode)
             healthSystem.RepairHealth();
     }
+
+    private void OnMouseEnter()
+    {
+        if (repairMode)
+            Debug.Log("click to repair");
+    }
 }

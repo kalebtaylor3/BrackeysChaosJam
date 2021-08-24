@@ -39,7 +39,7 @@ public class enemy : MonoBehaviour
         if(healthSystem.GetHealth() == 0)
         {
             Debug.Log("Dead Af");
-            Destroy(this.gameObject);
+            Destroy(holder.gameObject);
         }
 
     }
