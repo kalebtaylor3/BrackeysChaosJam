@@ -23,9 +23,13 @@ public class WaveController : MonoBehaviour
     private void Update()
     {
         OnWave?.Invoke(waves);
-        Timer += Time.deltaTime;
-        SpawnTimer += Time.deltaTime;
-        spawnCounter += Time.deltaTime;
+
+        if (waves <= 9)
+        {
+            Timer += Time.deltaTime;
+            SpawnTimer += Time.deltaTime;
+            spawnCounter += Time.deltaTime;
+        }
 
         if (spawnCounter > spawnDelay)
         {
@@ -37,17 +41,32 @@ public class WaveController : MonoBehaviour
                 OnDifficulty?.Invoke(this);
             }
 
-            if (SpawnTimer >= spawnTime && Timer < spawnLenght && spawnCounter > spawnDelay && waves <= 10)
+            if (SpawnTimer >= spawnTime && Timer < spawnLenght && spawnCounter > spawnDelay)
             {
                 SpawnTimer = 0;
                 //SpawnEnemy();
-                OnEnemy?.Invoke();
+                if(waves <= 9)
+                    OnEnemy?.Invoke();
+
+                if(waves == 10)
+                {
+                    //spawn boss
+                }
             }
         }
         else
         {
             Debug.Log("round cool down");
         }
+
+        if(waves == 10)
+        {
+            //
+            Timer = 0;
+            //if boss dies
+                //waves = 11;
+                //load gameover win
+        }    
 
 
         if(Timer >= spawnLenght)

@@ -22,7 +22,7 @@ public class GameOver : MonoBehaviour
     {
         if(playerCounter == 0)
         {
-            StartCoroutine(DeathDelay());
+            //StartCoroutine(DeathDelay());
         }
     }
 
