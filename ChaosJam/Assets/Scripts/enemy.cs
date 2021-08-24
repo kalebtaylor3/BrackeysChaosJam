@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class enemy : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class enemy : MonoBehaviour
         healthBarTransform.SetParent(this.transform);
         HealthBar healthBar = healthBarTransform.GetComponent<HealthBar>();
         healthBar.Setup(healthSystem);
+    }
+    private void OnEnable()
+    {
+        Bullet.OnBullet += TakeDamage;
     }
 
     // Update is called once per frame
@@ -35,6 +40,11 @@ public class enemy : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+    }
+
+    void TakeDamage()
+    {
+        healthSystem.Damage(20);
     }
 
     private void OnCollisionStay2D(Collision2D collision)

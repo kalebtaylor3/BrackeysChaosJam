@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Bullet : MonoBehaviour
 {
+    public static event Action OnBullet;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +18,12 @@ public class Bullet : MonoBehaviour
         
     }
 
-  
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            Destroy(this.gameObject);
+            OnBullet?.Invoke();
         }
     }
 }
