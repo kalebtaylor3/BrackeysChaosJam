@@ -8,6 +8,7 @@ public class wall : MonoBehaviour
     public Transform HealthBar;
     Transform healthBarTransform;
     HealthSystem healthSystem;
+    bool repairMode = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,5 +35,12 @@ public class wall : MonoBehaviour
         {
             healthSystem.Damage(0.25f);
         }
+    }
+
+    private void OnMouseDown()
+    {
+        healthSystem.RepairHealth();
+        if (repairMode)
+            healthSystem.RepairHealth();
     }
 }
