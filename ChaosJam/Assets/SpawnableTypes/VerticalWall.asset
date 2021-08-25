@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: VerticalWall
   m_EditorClassIdentifier: 
   prefab: {fileID: 7095563415553157216, guid: c3ebf6cd712101b40a27812647763bcd, type: 3}
-  image: {fileID: 21300000, guid: 9133586b98307864f8871cadedf404e2, type: 3}
+  image: {fileID: 21300000, guid: 09ebc45a0bed08f44a81d1d84416f473, type: 3}

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 485262445540896128}
   - component: {fileID: 485262445540896129}
-  - component: {fileID: 485262445540896130}
   - component: {fileID: 485262445540896131}
+  - component: {fileID: 9154885858109238896}
   m_Layer: 0
   m_Name: VerticalWall
   m_TagString: Wall
@@ -83,32 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &485262445540896130
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 485262445540896140}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12, y: 4}
-    newSize: {x: 12, y: 4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 8.26, y: 1.85}
-  m_EdgeRadius: 0
 --- !u!114 &485262445540896131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,4 +97,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 3192556335411780022, guid: 337e7e65586da2d4ea9ff3e289016772,
     type: 3}
-  manager: {fileID: 6510877339559413574, guid: dd05544f54615d845bc47a91135f9e49, type: 3}
+--- !u!61 &9154885858109238896
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485262445540896140}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.10326958, y: -0.00000059604645}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 12, y: 4}
+    newSize: {x: 12, y: 4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 8.488827, y: 1.9230728}
+  m_EdgeRadius: 0

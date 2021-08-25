@@ -107,7 +107,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.26, y: 1.85}
+  m_Size: {x: 50, y: 50}
   m_EdgeRadius: 0
 --- !u!114 &6815979332000099951
 MonoBehaviour:
@@ -123,4 +123,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 3192556335411780022, guid: 337e7e65586da2d4ea9ff3e289016772,
     type: 3}
-  manager: {fileID: 6510877339559413574, guid: dd05544f54615d845bc47a91135f9e49, type: 3}
