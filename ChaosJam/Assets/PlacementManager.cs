@@ -105,14 +105,16 @@ public class PlacementManager : MonoBehaviour
     {
        BoxCollider2D boxCollider =  buildingSo.prefab.GetComponent<BoxCollider2D>();
 
-       if(Physics2D.OverlapBox(Position + (Vector3)boxCollider.offset, boxCollider.size, 0) != null)
+       if(Physics2D.OverlapBox(Position, boxCollider.size, 0) != null)
        {
             return false;
        }
-       else
-        {
+       else if(Physics2D.OverlapBox(Position, boxCollider.size, 0) == null)
+       {
             return true;
-        }
+       }
+
+        return true;
     }
 
 }
