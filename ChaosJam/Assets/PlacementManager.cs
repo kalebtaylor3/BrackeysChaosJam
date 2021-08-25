@@ -117,6 +117,12 @@ public class PlacementManager : MonoBehaviour
                 return false;
             }
 
+            if (c.transform.tag == "Player")
+            {
+                return false;
+            }
+
+
         }
 
         return true;
