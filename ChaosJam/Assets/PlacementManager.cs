@@ -73,6 +73,10 @@ public class PlacementManager : MonoBehaviour
                     Debug.Log("Not enough reesources");
                 }
             }
+            else
+            {
+                Debug.Log("Invalid Placement");
+            }
         }
 
     }
@@ -109,12 +113,10 @@ public class PlacementManager : MonoBehaviour
        {
             return false;
        }
-       else if(Physics2D.OverlapBox(Position, boxCollider.size, 0) == null)
-       {
+       else
+        {
             return true;
-       }
-
-        return true;
+        }
     }
 
 }
