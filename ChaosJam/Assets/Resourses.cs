@@ -14,16 +14,17 @@ public class Resourses : MonoBehaviour
     {
         wall.UseResources += Repair;
         enemy.OnDeath += IncreaseResouces;
+        PlacementManager.OnPlace += UseResources;
     }
 
     private void Start()
     {
-        text.text = resources + " Wood";
+        text.text = resources.ToString();
     }
 
     private void Update()
     {
-        text.text = resources + " Wood";
+        text.text = resources.ToString();
     }
 
     void Repair(int amount, HealthSystem repair)

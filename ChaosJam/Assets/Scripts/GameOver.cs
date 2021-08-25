@@ -22,7 +22,7 @@ public class GameOver : MonoBehaviour
     {
         if(playerCounter == 0)
         {
-            //StartCoroutine(DeathDelay());
+            StartCoroutine(DeathDelay());
         }
     }
 
@@ -40,7 +40,7 @@ public class GameOver : MonoBehaviour
 
     IEnumerator DeathDelay()
     {
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(0.5f);
         Application.LoadLevel(2);
     }
 }
