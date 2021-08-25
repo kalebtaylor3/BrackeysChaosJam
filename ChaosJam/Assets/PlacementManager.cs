@@ -36,24 +36,19 @@ public class PlacementManager : MonoBehaviour
         Vector2 v = Camera.main.ScreenToWorldPoint(mousePosition);
 
         Collider2D[] col = Physics2D.OverlapPointAll(v);
-
-        if (col.Length > 0)
+        foreach (Collider2D c in col)
         {
-            foreach (Collider2D c in col)
+            //Debug.Log("Collided with: " + c.collider2D.gameObject.name);
+            //targetPos = c.collider2D.gameObject.transform.position;
+
+            if (c.gameObject.tag == "Wall")
             {
-                //Debug.Log("Collided with: " + c.collider2D.gameObject.name);
-                //targetPos = c.collider2D.gameObject.transform.position;
-
-                if (c.gameObject.tag == "Wall")
-                {
-                    if (buildMode)
-                        makeVisable?.Invoke();
-                }
-                else
-                {
-                    makeInvisable?.Invoke();
-                }
-
+                if (buildMode)
+                    makeVisable?.Invoke();
+            }
+            else
+            {
+                makeInvisable?.Invoke();
             }
 
         }
