@@ -107,16 +107,19 @@ public class PlacementManager : MonoBehaviour
 
     private bool canSpawn(BuildingTypeSo buildingSo, Vector3 Position)
     {
-       BoxCollider2D boxCollider =  buildingSo.prefab.GetComponent<BoxCollider2D>();
 
-       if(Physics2D.OverlapBox(Position, boxCollider.size, 0) != null)
-       {
-            return false;
-       }
-       else
+        Collider2D[] col = Physics2D.OverlapPointAll(Position);
+
+        foreach (Collider2D c in col)
         {
-            return true;
+            if(c.transform.tag == "Wall")
+            {
+                return false;
+            }
+
         }
+
+        return true;
     }
 
 }
