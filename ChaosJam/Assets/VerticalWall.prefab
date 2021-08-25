@@ -123,3 +123,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 3192556335411780022, guid: 337e7e65586da2d4ea9ff3e289016772,
     type: 3}
+  manager: {fileID: 6510877339559413574, guid: dd05544f54615d845bc47a91135f9e49, type: 3}

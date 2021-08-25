@@ -9,10 +9,8 @@ public class wall : MonoBehaviour
     public Transform HealthBar;
     Transform healthBarTransform;
     HealthSystem healthSystem;
-    bool repairMode = true;
+    bool repairMode = false;
     public static event Action<int, HealthSystem> UseResources;
-    public static event Action OnHover;
-    public static event Action OffHover;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +22,53 @@ public class wall : MonoBehaviour
         healthBar.Setup(healthSystem);
     }
 
+    private void OnEnable()
+    {
+        PlacementManager.makeVisable += RepairMode;
+        BuildingTypeSelectUI.DisableBuilder += NotRepairMode;
+    }
+
+    private void OnDisable()
+    {
+        PlacementManager.makeVisable -= RepairMode;
+        BuildingTypeSelectUI.DisableBuilder -= NotRepairMode;
+    }
+
+
+
     // Update is called once per frame
     void Update()
     {
         if (healthSystem.GetHealth() == 0)
         {
             Destroy(this.gameObject);
+        }
+
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = 5f;
+
+        Vector2 v = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        Collider2D[] col = Physics2D.OverlapPointAll(v);
+
+        if (col.Length > 0)
+        {
+            foreach (Collider2D c in col)
+            {
+                //Debug.Log("Collided with: " + c.collider2D.gameObject.name);
+                //targetPos = c.collider2D.gameObject.transform.position;
+
+                if(c.gameObject.tag == "Wall")
+                {
+                    if(repairMode == true && Input.GetMouseButtonDown(0))
+                    {
+                        UseResources?.Invoke(5, healthSystem);
+                    }
+
+                }
+
+            }
+
         }
     }
 
@@ -41,34 +80,22 @@ public class wall : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
-    {
-        if (repairMode)
-        {
-            UseResources?.Invoke(5, healthSystem);
-        }
-    }
-
-    private void OnMouseEnter()
-    {
-        if (repairMode)
-        {
-            OnHover?.Invoke();
-        }
-    }
-
-    private void OnMouseExit()
-    {
-        OffHover?.Invoke();
-    }
-
     void RepairMode()
     {
         repairMode = true;
     }
 
-    void otherModes()
+    void NotRepairMode()
     {
         repairMode = false;
     }
+
+    private void OnMouseDown()
+    {
+        //if (repairMode)
+        //{
+            UseResources?.Invoke(5, healthSystem);
+        //}
+    }
+
 }

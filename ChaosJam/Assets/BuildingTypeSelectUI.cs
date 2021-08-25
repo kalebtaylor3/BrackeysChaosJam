@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class BuildingTypeSelectUI : MonoBehaviour
 {
     [SerializeField] private List<BuildingTypeSo> buildingTypeList;
     [SerializeField] private PlacementManager manager;
-
+    public static event Action DisableBuilder;
     private void Awake()
     {
         Transform buildingButtonTemplate = transform.Find("BuildingButtonTemplate");
@@ -25,6 +26,8 @@ public class BuildingTypeSelectUI : MonoBehaviour
             buildingButtonTransform.GetComponent<Button>().onClick.AddListener(() =>
             {
                 manager.SetActiveType(buildingTypeSo);
+                DisableBuilder?.Invoke();
+                //makeInvisable?.Invoke();
             });
 
             index++;
