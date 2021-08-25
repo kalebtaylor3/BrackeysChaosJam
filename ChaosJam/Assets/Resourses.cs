@@ -44,7 +44,7 @@ public class Resourses : MonoBehaviour
 
     void UseResources(int amount)
     {
-        if (resources > amount)
+        if (resources >= amount)
         {
             resources = resources - amount;
         }

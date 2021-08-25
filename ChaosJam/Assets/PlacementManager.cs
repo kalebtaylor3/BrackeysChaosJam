@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
 using System;
+using UnityEngine.EventSystems;
 
 public class PlacementManager : MonoBehaviour
 {
@@ -11,10 +12,21 @@ public class PlacementManager : MonoBehaviour
     public static event Action makeVisable;
     public static event Action makeInvisable;
     public bool buildMode = false;
-    Ray ray;
-    RaycastHit hit;
+    public bool wallMode = false;
+    public Resourses resources;
+    public BuildingTypeSelectUI ui;
+
+    //public int wallCost = 24;
+
+    public GameObject selectedRepair;
 
     float counter;
+
+    private void Start()
+    {
+        selectedRepair.SetActive(false);
+    }
+
     private void Update()
     {
 
@@ -46,12 +58,18 @@ public class PlacementManager : MonoBehaviour
 
         }
 
-        if (Input.GetMouseButtonDown(0) && buildMode == false)
+        if (Input.GetMouseButtonDown(0) && buildMode == false && wallMode == true && !EventSystem.current.IsPointerOverGameObject())
         {
-            //ifresources is gater than amount
+            if (resources.resources >= 25)
+            {
                 OnPlace?.Invoke(25);
                 Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
                 Instantiate(activeType.prefab, mouseWorldPosition, Quaternion.identity);
+            }
+            else
+            {
+                Debug.Log("Not enough reesources");
+            }
         }
 
     }
@@ -59,6 +77,11 @@ public class PlacementManager : MonoBehaviour
     public void BuildMode()
     {
         buildMode = true;
+        selectedRepair.SetActive(true);
+        foreach (BuildingTypeSo buildingTypeSo in ui.buildingbtnDic.Keys)
+        {
+            ui.buildingbtnDic[buildingTypeSo].Find("Selected").gameObject.SetActive(false);
+        }
     }
 
     public void SetActiveType(BuildingTypeSo building)
@@ -66,6 +89,12 @@ public class PlacementManager : MonoBehaviour
         activeType = building;
 
         buildMode = false;
+        selectedRepair.SetActive(false);
+    }
+
+    public BuildingTypeSo GetActiveBuildingType()
+    {
+        return activeType;
     }
 
 }

@@ -9,10 +9,14 @@ public class BuildingTypeSelectUI : MonoBehaviour
     [SerializeField] private List<BuildingTypeSo> buildingTypeList;
     [SerializeField] private PlacementManager manager;
     public static event Action DisableBuilder;
+    [HideInInspector] public Dictionary<BuildingTypeSo, Transform> buildingbtnDic;
     private void Awake()
     {
         Transform buildingButtonTemplate = transform.Find("BuildingButtonTemplate");
         buildingButtonTemplate.gameObject.SetActive(false);
+
+
+        buildingbtnDic = new Dictionary<BuildingTypeSo, Transform>();
 
         int index = 0;
         foreach (BuildingTypeSo buildingTypeSo in buildingTypeList)
@@ -27,10 +31,34 @@ public class BuildingTypeSelectUI : MonoBehaviour
             {
                 manager.SetActiveType(buildingTypeSo);
                 DisableBuilder?.Invoke();
+                UpdateSelectedVisual();
+                manager.wallMode = true;
+                manager.selectedRepair.SetActive(false);
                 //makeInvisable?.Invoke();
             });
-
+            buildingbtnDic[buildingTypeSo] = buildingButtonTransform;
             index++;
         }
+
+    }
+
+    private void Start()
+    {
+        UpdateSelectedVisual();
+        foreach (BuildingTypeSo buildingTypeSo in buildingbtnDic.Keys)
+        {
+            buildingbtnDic[buildingTypeSo].Find("Selected").gameObject.SetActive(false);
+        }
+    }
+
+    private void UpdateSelectedVisual()
+    {
+        foreach(BuildingTypeSo buildingTypeSo in buildingbtnDic.Keys)
+        {
+            buildingbtnDic[buildingTypeSo].Find("Selected").gameObject.SetActive(false);
+        }
+
+        BuildingTypeSo activebuildingType = manager.GetActiveBuildingType();
+        buildingbtnDic[activebuildingType].Find("Selected").gameObject.SetActive(true);
     }
 }

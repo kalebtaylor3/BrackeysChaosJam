@@ -62,7 +62,8 @@ public class wall : MonoBehaviour
                 {
                     if(repairMode == true && Input.GetMouseButtonDown(0))
                     {
-                        UseResources?.Invoke(5, healthSystem);
+
+                        c.GetComponent<wall>().Repair();
                     }
 
                 }
@@ -90,12 +91,17 @@ public class wall : MonoBehaviour
         repairMode = false;
     }
 
-    private void OnMouseDown()
+    public void Repair()
     {
+        UseResources?.Invoke(5, this.healthSystem);
+    }
+
+    //private void OnMouseDown()
+    //{
         //if (repairMode)
         //{
-            UseResources?.Invoke(5, healthSystem);
+            //UseResources?.Invoke(5, healthSystem);
         //}
-    }
+    //}
 
 }
