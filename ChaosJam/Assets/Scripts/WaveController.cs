@@ -21,6 +21,8 @@ public class WaveController : MonoBehaviour
     private float spawnCounter;
     public float spawnDelay;
 
+    public Resourses resources;
+
     private void Update()
     {
         OnWave?.Invoke(waves);
@@ -40,6 +42,7 @@ public class WaveController : MonoBehaviour
                 waves++;
                 spawnCounter = 0;
                 OnDifficulty?.Invoke(this);
+                resources.resources = resources.resources + 75;
             }
 
             if (SpawnTimer >= spawnTime && Timer < spawnLenght && spawnCounter > spawnDelay)

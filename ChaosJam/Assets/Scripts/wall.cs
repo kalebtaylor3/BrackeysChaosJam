@@ -41,7 +41,14 @@ public class wall : MonoBehaviour
     {
         if (healthSystem.GetHealth() == 0)
         {
+            GameObject holder = GameObject.Find("VerticalWallHolder");
             Destroy(this.gameObject);
+
+            if(holder != null)
+            {
+                Destroy(holder);
+            }
+
         }
 
         Vector3 mousePosition = Input.mousePosition;
