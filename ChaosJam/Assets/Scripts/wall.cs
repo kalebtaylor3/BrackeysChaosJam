@@ -11,6 +11,7 @@ public class wall : MonoBehaviour
     HealthSystem healthSystem;
     bool repairMode = false;
     public static event Action<int, HealthSystem> UseResources;
+    public GameObject _woodChip;
     // Start is called before the first frame update
     void Start()
     {
@@ -85,6 +86,8 @@ public class wall : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             healthSystem.Damage(0.25f);
+            Instantiate(_woodChip, new Vector2(collision.transform.position.x, collision.transform.position.y + 0.2f), transform.rotation);
+
         }
     }
 

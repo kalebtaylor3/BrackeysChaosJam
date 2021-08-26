@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 8328393528754599786}
   - component: {fileID: 8328393528754599785}
   - component: {fileID: 8328393528754599784}
+  - component: {fileID: 3197146789602119503}
   m_Layer: 0
-  m_Name: Wall Chip
+  m_Name: wallChipParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4754,3 +4755,15 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &3197146789602119503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8328393528754599703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c10c9dfca9d6424ea96adf21320d650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
