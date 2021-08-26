@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public static event Action OnDeath;
     public GameObject _bloodDeath;
     public GameObject _bloodChip;
+    bool isDone = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,11 @@ public class Player : MonoBehaviour
         if (healthSystem.GetHealth() == 0)
         {
             Debug.Log("Dead Af");
-            OnDeath?.Invoke();
+            if (!isDone)
+            {
+                OnDeath?.Invoke();
+                isDone = true;
+            }
             Instantiate(_bloodDeath, new Vector2(transform.position.x, transform.position.y + 0.2f), transform.rotation);
             StartCoroutine(Die());
         }

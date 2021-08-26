@@ -10,8 +10,11 @@ public class PlacementManager : MonoBehaviour
     [SerializeField] private BuildingTypeSo activeType;
     public static event Action<int> OnPlace;
     public static event Action makeVisable;
+    public static event Action delMode;
     public static event Action makeInvisable;
+    public static event Action DisabledelMode;
     public bool buildMode = false;
+    public bool deleteMode = false;
     public bool wallMode = false;
     public Resourses resources;
     public BuildingTypeSelectUI ui;
@@ -19,12 +22,14 @@ public class PlacementManager : MonoBehaviour
     //public int wallCost = 24;
 
     public GameObject selectedRepair;
+    public GameObject selectedDelete;
 
     float counter;
 
     private void Start()
     {
         selectedRepair.SetActive(false);
+        selectedDelete.SetActive(false);
     }
 
     private void Update()
@@ -45,15 +50,21 @@ public class PlacementManager : MonoBehaviour
             {
                 if (buildMode)
                     makeVisable?.Invoke();
+
+                if(deleteMode)
+                {
+                    delMode?.Invoke();
+                }
             }
             else
             {
                 makeInvisable?.Invoke();
+                DisabledelMode?.Invoke();
             }
 
         }
 
-        if (Input.GetMouseButtonDown(0) && buildMode == false && wallMode == true && !EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButtonDown(0) && buildMode == false && deleteMode == false && wallMode == true && !EventSystem.current.IsPointerOverGameObject())
         {
             Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
             if (canSpawn(activeType, mouseWorldPosition))
@@ -81,6 +92,20 @@ public class PlacementManager : MonoBehaviour
     {
         buildMode = true;
         selectedRepair.SetActive(true);
+        selectedDelete.SetActive(false);
+        foreach (BuildingTypeSo buildingTypeSo in ui.buildingbtnDic.Keys)
+        {
+            ui.buildingbtnDic[buildingTypeSo].Find("Selected").gameObject.SetActive(false);
+        }
+    }
+
+    public void DeleteMode()
+    {
+        deleteMode = true;
+        wallMode = false;
+        buildMode = false;
+        selectedRepair.SetActive(false);
+        selectedDelete.SetActive(true);
         foreach (BuildingTypeSo buildingTypeSo in ui.buildingbtnDic.Keys)
         {
             ui.buildingbtnDic[buildingTypeSo].Find("Selected").gameObject.SetActive(false);
@@ -92,7 +117,9 @@ public class PlacementManager : MonoBehaviour
         activeType = building;
 
         buildMode = false;
+        deleteMode = false;
         selectedRepair.SetActive(false);
+        selectedDelete.SetActive(false);
     }
 
     public BuildingTypeSo GetActiveBuildingType()
@@ -114,6 +141,11 @@ public class PlacementManager : MonoBehaviour
             }
 
             if (c.transform.tag == "Player")
+            {
+                return false;
+            }
+
+            if (c.transform.tag == "Tree")
             {
                 return false;
             }

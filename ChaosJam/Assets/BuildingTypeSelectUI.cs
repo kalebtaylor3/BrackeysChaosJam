@@ -9,6 +9,7 @@ public class BuildingTypeSelectUI : MonoBehaviour
     [SerializeField] private List<BuildingTypeSo> buildingTypeList;
     [SerializeField] private PlacementManager manager;
     public static event Action DisableBuilder;
+    public static event Action DisableDelete;
     [HideInInspector] public Dictionary<BuildingTypeSo, Transform> buildingbtnDic;
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class BuildingTypeSelectUI : MonoBehaviour
             {
                 manager.SetActiveType(buildingTypeSo);
                 DisableBuilder?.Invoke();
+                DisableDelete?.Invoke();
                 UpdateSelectedVisual();
                 manager.wallMode = true;
                 manager.selectedRepair.SetActive(false);

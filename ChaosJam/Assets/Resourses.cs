@@ -16,6 +16,7 @@ public class Resourses : MonoBehaviour
         enemy.OnDeath += IncreaseResouces;
         PlacementManager.OnPlace += UseResources;
         wall.UseResources += Repair;
+        wall.GetResources += IncreaseResouces;
     }
 
     private void Start()

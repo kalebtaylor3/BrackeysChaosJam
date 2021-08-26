@@ -20,7 +20,7 @@ public class WaveController : MonoBehaviour
     public float spawnLenght;
     private float spawnCounter;
     public float spawnDelay;
-
+    bool happenOnce = false;
     public Resourses resources;
 
     private void Update()
@@ -49,14 +49,8 @@ public class WaveController : MonoBehaviour
             {
                 SpawnTimer = 0;
                 //SpawnEnemy();
-                if(waves <= 9)
+                if(waves <= 8)
                     OnEnemy?.Invoke();
-
-                if(waves == 10)
-                {
-                    //spawn boss
-
-                }
             }
         }
         else
@@ -64,8 +58,13 @@ public class WaveController : MonoBehaviour
             Debug.Log("round cool down");
         }
 
-        if(waves == 10)
+        if(waves == 9)
         {
+            if (!happenOnce)
+            {
+                Debug.Log("Boss Spawning");
+                happenOnce = true;
+            }
             //
             Timer = 0;
             //if boss dies

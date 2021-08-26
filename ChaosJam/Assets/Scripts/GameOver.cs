@@ -6,6 +6,8 @@ public class GameOver : MonoBehaviour
 {
 
     int playerCounter = 1;
+    int activePlayers = 1;
+    bool isDone = false;
     private void OnEnable()
     {
         PlayerActivator.OnSpawn += Increase;
@@ -20,7 +22,7 @@ public class GameOver : MonoBehaviour
 
     private void Update()
     {
-        if(playerCounter == 0)
+        if(activePlayers == 0)
         {
             StartCoroutine(DeathDelay());
         }
@@ -29,13 +31,16 @@ public class GameOver : MonoBehaviour
     void Increase()
     {
         playerCounter = playerCounter + 1;
+        activePlayers = playerCounter;
         Debug.Log(playerCounter);
     }
 
     void Decrease()
     {
         playerCounter = playerCounter - 1;
+        activePlayers = playerCounter;
         Debug.Log(playerCounter);
+        isDone = true;
     }
 
     IEnumerator DeathDelay()

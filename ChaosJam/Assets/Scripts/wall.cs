@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using CodeMonkey.Utils;
 
 public class wall : MonoBehaviour
 {
@@ -10,9 +11,12 @@ public class wall : MonoBehaviour
     Transform healthBarTransform;
     HealthSystem healthSystem;
     bool repairMode = false;
+    bool deleteMode = false;
     public static event Action<int, HealthSystem> UseResources;
+    public static event Action<int> GetResources;
     public GameObject _woodChip;
     public GameObject _bloodChip;
+    public GameObject _delete;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,12 +32,18 @@ public class wall : MonoBehaviour
     {
         PlacementManager.makeVisable += RepairMode;
         BuildingTypeSelectUI.DisableBuilder += NotRepairMode;
+
+        PlacementManager.delMode += DeleteMode;
+        BuildingTypeSelectUI.DisableDelete += NotDeleteMode;
     }
 
     private void OnDisable()
     {
         PlacementManager.makeVisable -= RepairMode;
         BuildingTypeSelectUI.DisableBuilder -= NotRepairMode;
+
+        PlacementManager.delMode -= DeleteMode;
+        BuildingTypeSelectUI.DisableDelete -= NotDeleteMode;
     }
 
 
@@ -75,6 +85,15 @@ public class wall : MonoBehaviour
                         c.GetComponent<wall>().Repair();
                     }
 
+                    if (deleteMode == true && Input.GetMouseButtonDown(0))
+                    {
+
+                        c.GetComponent<wall>().DestroyWall();
+                        Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
+                        Instantiate(_delete, mouseWorldPosition, transform.rotation);
+                        GetResources?.Invoke(20);
+                    }
+
                 }
 
             }
@@ -96,11 +115,34 @@ public class wall : MonoBehaviour
     void RepairMode()
     {
         repairMode = true;
+        deleteMode = false;
     }
 
     void NotRepairMode()
     {
         repairMode = false;
+    }
+
+    void DeleteMode()
+    {
+        deleteMode = true;
+        repairMode = false;
+    }
+
+    void NotDeleteMode()
+    {
+        deleteMode = false;
+    }
+
+    public void DestroyWall()
+    {
+        GameObject holder = GameObject.Find("VerticalWallHolder");
+        Destroy(this.gameObject);
+
+        if (holder != null)
+        {
+            Destroy(holder);
+        }
     }
 
     public void Repair()
