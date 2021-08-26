@@ -15,7 +15,7 @@ public class PlacementManager : MonoBehaviour
     public bool wallMode = false;
     public Resourses resources;
     public BuildingTypeSelectUI ui;
-
+    public GameObject _place;
     //public int wallCost = 24;
 
     public GameObject selectedRepair;
@@ -61,6 +61,7 @@ public class PlacementManager : MonoBehaviour
                 if (resources.resources >= 25)
                 {
                     OnPlace?.Invoke(25);
+                    Instantiate(_place, mouseWorldPosition, transform.rotation);
                     Instantiate(activeType.prefab, mouseWorldPosition, Quaternion.identity);
                 }
                 else
