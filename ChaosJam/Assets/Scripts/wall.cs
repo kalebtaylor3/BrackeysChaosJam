@@ -12,6 +12,7 @@ public class wall : MonoBehaviour
     bool repairMode = false;
     public static event Action<int, HealthSystem> UseResources;
     public GameObject _woodChip;
+    public GameObject _bloodChip;
     // Start is called before the first frame update
     void Start()
     {
@@ -87,6 +88,7 @@ public class wall : MonoBehaviour
         {
             healthSystem.Damage(0.25f);
             Instantiate(_woodChip, new Vector2(collision.transform.position.x, collision.transform.position.y + 0.2f), transform.rotation);
+            Instantiate(_bloodChip, new Vector2(collision.transform.position.x, collision.transform.position.y + 0.2f), transform.rotation);
 
         }
     }

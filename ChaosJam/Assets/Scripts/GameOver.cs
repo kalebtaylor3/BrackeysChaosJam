@@ -40,7 +40,7 @@ public class GameOver : MonoBehaviour
 
     IEnumerator DeathDelay()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
         Application.LoadLevel(2);
     }
 }

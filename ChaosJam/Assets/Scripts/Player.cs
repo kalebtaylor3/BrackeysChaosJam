@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     HealthSystem healthSystem;
     public Animator animations;
     public static event Action OnDeath;
+    public GameObject _bloodDeath;
+    public GameObject _bloodChip;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,14 +30,22 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Dead Af");
             OnDeath?.Invoke();
-            Destroy(this.gameObject);
+            Instantiate(_bloodDeath, new Vector2(transform.position.x, transform.position.y + 0.2f), transform.rotation);
+            StartCoroutine(Die());
         }
+    }
+
+    IEnumerator Die()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Destroy(this.gameObject);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            Instantiate(_bloodChip, new Vector2(transform.position.x, transform.position.y + 0.2f), transform.rotation);
             healthSystem.Damage(0.75f);
             animations.SetBool("Attacking", true);
 

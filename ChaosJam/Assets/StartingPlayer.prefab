@@ -100,6 +100,10 @@ MonoBehaviour:
   HealthBar: {fileID: 3192556335411780022, guid: 0e05b36258648ff4ab2f0a8a91b6e70c,
     type: 3}
   animations: {fileID: 1968751484602665316}
+  _bloodDeath: {fileID: 8560065586695504725, guid: ec54d31d31c53df429cd0d0d907f417b,
+    type: 3}
+  _bloodChip: {fileID: 8560065586695504725, guid: 8ba4745703072b24089b685992647530,
+    type: 3}
 --- !u!95 &1968751484602665316
 Animator:
   serializedVersion: 3

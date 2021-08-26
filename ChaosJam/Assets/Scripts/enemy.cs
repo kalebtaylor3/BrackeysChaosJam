@@ -12,6 +12,8 @@ public class enemy : MonoBehaviour
     public Animator animations;
     public Transform holder;
     public static event Action<int> OnDeath;
+    public GameObject _bloodDeath;
+    public GameObject _bloodChip;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,9 +43,16 @@ public class enemy : MonoBehaviour
         {
             Debug.Log("Dead Af");
             OnDeath?.Invoke(5);
-            Destroy(holder.gameObject);
+            StartCoroutine(Die());
+            Instantiate(_bloodDeath, new Vector2(transform.position.x, transform.position.y + 0.2f), transform.rotation);
         }
 
+    }
+
+    IEnumerator Die()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Destroy(holder.gameObject);
     }
 
     void TakeDamage()
@@ -63,6 +72,8 @@ public class enemy : MonoBehaviour
         {
             healthSystem.Damage(0.85f);
             animations.SetBool("Attacking", true);
+
+            Instantiate(_bloodChip, new Vector2(transform.position.x, transform.position.y + 0.2f), transform.rotation);
         }
     }
 

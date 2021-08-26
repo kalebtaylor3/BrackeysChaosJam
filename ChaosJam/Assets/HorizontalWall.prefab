@@ -125,3 +125,5 @@ MonoBehaviour:
     type: 3}
   _woodChip: {fileID: 8328393528754599703, guid: b279a79eea0d9b042a551b16e0d50144,
     type: 3}
+  _bloodChip: {fileID: 8560065586695504725, guid: 8ba4745703072b24089b685992647530,
+    type: 3}

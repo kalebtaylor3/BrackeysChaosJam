@@ -52,6 +52,10 @@ MonoBehaviour:
     type: 3}
   animations: {fileID: 1481790262444404329}
   holder: {fileID: 0}
+  _bloodDeath: {fileID: 8560065586695504725, guid: ec54d31d31c53df429cd0d0d907f417b,
+    type: 3}
+  _bloodChip: {fileID: 8560065586695504725, guid: 8ba4745703072b24089b685992647530,
+    type: 3}
 --- !u!114 &311994611768779419
 MonoBehaviour:
   m_ObjectHideFlags: 0
