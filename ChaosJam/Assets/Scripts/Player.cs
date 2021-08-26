@@ -70,6 +70,29 @@ public class Player : MonoBehaviour
 
             transform.rotation = closestEnemy.transform.rotation;
         }
+
+        if (collision.gameObject.tag == "Boss")
+        {
+            Instantiate(_bloodChip, new Vector2(transform.position.x, transform.position.y + 0.2f), transform.rotation);
+            healthSystem.Damage(1.50f);
+            animations.SetBool("Attacking", true);
+
+            float distanceToClosestEnemy = Mathf.Infinity;
+            Boss closestEnemy = null;
+            Boss[] allEnemies = GameObject.FindObjectsOfType<Boss>();
+
+            foreach (Boss currentEnemy in allEnemies)
+            {
+                float distancetoEnemy = (currentEnemy.transform.position - this.transform.position).sqrMagnitude;
+                if (distancetoEnemy < distanceToClosestEnemy)
+                {
+                    distanceToClosestEnemy = distancetoEnemy;
+                    closestEnemy = currentEnemy;
+                }
+            }
+
+            transform.rotation = closestEnemy.transform.rotation;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)

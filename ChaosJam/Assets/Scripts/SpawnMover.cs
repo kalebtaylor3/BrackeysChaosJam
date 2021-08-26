@@ -57,16 +57,16 @@ public class SpawnMover : MonoBehaviour
                 spawns[3].transform.position = new Vector3(21.2f, -18.9f);
                 break;
             case 7:
-                spawns[0].transform.position = new Vector3(-22.9f, 20f);
-                spawns[1].transform.position = new Vector3(-22.9f, -20f);
-                spawns[2].transform.position = new Vector3(22.9f, 20f);
-                spawns[3].transform.position = new Vector3(22.9f, -20f);
+                spawns[0].transform.position = new Vector3(-25.6f, 21.3f);
+                spawns[1].transform.position = new Vector3(-25.6f, -21.3f);
+                spawns[2].transform.position = new Vector3(25.6f, 21.3f);
+                spawns[3].transform.position = new Vector3(25.6f, -21.3f);
                 break;
             case 8:
-                spawns[0].transform.position = new Vector3(-24.9f, 21.8f);
-                spawns[1].transform.position = new Vector3(-24.9f, -21.8f);
-                spawns[2].transform.position = new Vector3(24.9f, 21.8f);
-                spawns[3].transform.position = new Vector3(24.9f, -21.8f);
+                spawns[0].transform.position = new Vector3(-27.1f, 23f);
+                spawns[1].transform.position = new Vector3(-27.1f, -23f);
+                spawns[2].transform.position = new Vector3(27.1f, 23f);
+                spawns[3].transform.position = new Vector3(27.1f, -23f);
                 break;
         }
     }

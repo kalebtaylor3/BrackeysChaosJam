@@ -8,21 +8,14 @@ public class followMouse : MonoBehaviour
     // Start is called before the first frame update
     private Vector3 mousePosition;
     private SpriteRenderer image;
-    public PlacementManager manager;
     private void OnEnable()
     {
         WaveController.OnWave += CheckWave;
-        //wall.MakeVisable += Visable;
-        PlacementManager.makeVisable += Visable;
-        PlacementManager.makeInvisable += NotVisable;
     }
 
     private void OnDisable()
     {
         WaveController.OnWave -= CheckWave;
-        //wall.MakeVisable += Visable;
-        PlacementManager.makeVisable -= Visable;
-        PlacementManager.makeInvisable -= NotVisable;
     }
 
     void Start()
@@ -40,20 +33,6 @@ public class followMouse : MonoBehaviour
         mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         transform.position = Vector2.Lerp(transform.position, mousePosition, 1);
-    }
-
-        void Visable()
-    {
-        Color c = image.color;
-        c.a = 1;
-        image.color = c;
-    }
-
-    void NotVisable()
-    {
-        Color c = image.color;
-        c.a = 0;
-        image.color = c;
     }
 
     void CheckWave(int wave)

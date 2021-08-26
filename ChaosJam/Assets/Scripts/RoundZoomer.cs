@@ -48,19 +48,19 @@ public class RoundZoomer : MonoBehaviour
                 break;
             case 5:
                 Debug.Log("Wave 6");
-                main.orthographicSize = Mathf.Lerp(main.orthographicSize, 15, 0.008f);
+                main.orthographicSize = Mathf.Lerp(main.orthographicSize, 16, 0.008f);
                 break;
             case 6:
                 Debug.Log("Wave 7");
-                main.orthographicSize = Mathf.Lerp(main.orthographicSize, 16, 0.008f);
+                main.orthographicSize = Mathf.Lerp(main.orthographicSize, 18, 0.008f);
                 break;
             case 7:
                 Debug.Log("Wave 8");
-                main.orthographicSize = Mathf.Lerp(main.orthographicSize, 17, 0.008f);
+                main.orthographicSize = Mathf.Lerp(main.orthographicSize, 20, 0.008f);
                 break;
             case 8:
                 Debug.Log("Wave 9");
-                main.orthographicSize = Mathf.Lerp(main.orthographicSize, 19, 0.008f);
+                main.orthographicSize = Mathf.Lerp(main.orthographicSize, 22, 0.008f);
                 break;
             case 9:
                 Debug.Log("Wave 10");

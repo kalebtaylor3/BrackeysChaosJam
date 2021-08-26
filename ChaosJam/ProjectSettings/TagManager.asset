@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - floor
   - Tree
+  - Boss
   layers:
   - Default
   - TransparentFX

@@ -16,7 +16,9 @@ public class wall : MonoBehaviour
     public static event Action<int> GetResources;
     public GameObject _woodChip;
     public GameObject _bloodChip;
+    public GameObject _bossblood;
     public GameObject _delete;
+    public GameObject _bosschip;
     // Start is called before the first frame update
     void Start()
     {
@@ -118,6 +120,14 @@ public class wall : MonoBehaviour
             healthSystem.Damage(0.25f);
             Instantiate(_woodChip, new Vector2(collision.transform.position.x, collision.transform.position.y + 0.2f), transform.rotation);
             Instantiate(_bloodChip, new Vector2(collision.transform.position.x, collision.transform.position.y + 0.2f), transform.rotation);
+
+        }
+
+        if (collision.gameObject.tag == "Boss")
+        {
+            healthSystem.Damage(1f);
+            Instantiate(_bosschip, new Vector2(collision.transform.position.x, collision.transform.position.y + 0.9f), transform.rotation);
+            Instantiate(_bossblood, new Vector2(collision.transform.position.x, collision.transform.position.y + 0.2f), transform.rotation);
 
         }
     }

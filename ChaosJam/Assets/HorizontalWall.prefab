@@ -127,4 +127,8 @@ MonoBehaviour:
     type: 3}
   _bloodChip: {fileID: 8560065586695504725, guid: 8ba4745703072b24089b685992647530,
     type: 3}
+  _bossblood: {fileID: 8560065586695504725, guid: 066d014bda96d2846b5f3516b0122cf5,
+    type: 3}
   _delete: {fileID: 100006, guid: b26161bd088b9ef4992538643ba979ba, type: 3}
+  _bosschip: {fileID: 8328393528754599703, guid: 73f3d1ee8d0d2444d8faaaa6c135097e,
+    type: 3}

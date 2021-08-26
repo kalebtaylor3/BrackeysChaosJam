@@ -3,25 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class enemy : MonoBehaviour
+public class Boss : MonoBehaviour
 {
-
     public Transform HealthBar;
     Transform healthBarTransform;
     HealthSystem healthSystem;
     public Animator animations;
     public Transform holder;
-    public static event Action<int, enemy> OnDeath;
+    public static event Action OnDeath;
     public GameObject _bloodDeath;
     public GameObject _bloodChip;
     bool hasHappened = false;
+    public Transform bosspos;
     // Start is called before the first frame update
     void Start()
     {
-        healthSystem = new HealthSystem(100);
+        healthSystem = new HealthSystem(500);
 
-        healthBarTransform = Instantiate(HealthBar, new Vector2(transform.position.x, transform.position.y + 0.75f), Quaternion.identity);
-        healthBarTransform.SetParent(holder);
+        healthBarTransform = Instantiate(HealthBar, bosspos.position, Quaternion.identity);
+        healthBarTransform.SetParent(bosspos);
+        healthBarTransform.position = bosspos.position;
         HealthBar healthBar = healthBarTransform.GetComponent<HealthBar>();
         healthBar.Setup(healthSystem);
     }
@@ -33,19 +34,18 @@ public class enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBarTransform.position = new Vector2(transform.position.x, transform.position.y + 1);
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             healthSystem.Damage(10);
         }
 
-        if(healthSystem.GetHealth() == 0)
+        if (healthSystem.GetHealth() == 0)
         {
             Debug.Log("Dead Af");
             if (!hasHappened)
             {
-                OnDeath?.Invoke(10, this);
+                OnDeath?.Invoke();
                 hasHappened = true;
             }
             StartCoroutine(Die());
@@ -75,15 +75,7 @@ public class enemy : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
-            healthSystem.Damage(0.85f);
-            animations.SetBool("Attacking", true);
-
-            Instantiate(_bloodChip, new Vector2(transform.position.x, transform.position.y + 0.2f), transform.rotation);
-        }
-
-        if (collision.gameObject.tag == "Boss")
-        {
-            healthSystem.Damage(1f);
+            healthSystem.Damage(0.25f);
             animations.SetBool("Attacking", true);
 
             Instantiate(_bloodChip, new Vector2(transform.position.x, transform.position.y + 0.2f), transform.rotation);

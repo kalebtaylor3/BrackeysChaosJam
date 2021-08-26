@@ -12,12 +12,15 @@ public class GameOver : MonoBehaviour
     {
         PlayerActivator.OnSpawn += Increase;
         Player.OnDeath += Decrease;
+        Boss.OnDeath += winScreen;
     }
 
     private void OnDisable()
     {
         PlayerActivator.OnSpawn -= Increase;
         Player.OnDeath -= Decrease;
+
+        Boss.OnDeath -= winScreen;
     }
 
     private void Update()
@@ -47,5 +50,16 @@ public class GameOver : MonoBehaviour
     {
         yield return new WaitForSeconds(0.8f);
         Application.LoadLevel(2);
+    }
+
+    void winScreen()
+    {
+        StartCoroutine(winDelay());
+    }
+
+    IEnumerator winDelay()
+    {
+        yield return new WaitForSeconds(0.8f);
+        Application.LoadLevel(3);
     }
 }

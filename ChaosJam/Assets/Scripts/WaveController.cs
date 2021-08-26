@@ -63,13 +63,11 @@ public class WaveController : MonoBehaviour
             if (!happenOnce)
             {
                 Debug.Log("Boss Spawning");
+                OnBoss?.Invoke();
                 happenOnce = true;
             }
             //
             Timer = 0;
-            //if boss dies
-                //waves = 11;
-                //load gameover win
         }    
 
 

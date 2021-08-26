@@ -4,6 +4,7 @@ using UnityEngine;
 using CodeMonkey.Utils;
 using System;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlacementManager : MonoBehaviour
 {
@@ -23,12 +24,21 @@ public class PlacementManager : MonoBehaviour
 
     public GameObject vertical;
     public GameObject Horitzotal;
+    public GameObject repair;
 
 
     public static event Action OnParticle;
 
     public GameObject selectedRepair;
     public GameObject selectedDelete;
+    public SpriteRenderer h;
+    public SpriteRenderer vv;
+    public SpriteRenderer r;
+
+
+    public Color can;
+    public Color cant;
+    public Color cantR;
 
     float counter;
 
@@ -38,10 +48,39 @@ public class PlacementManager : MonoBehaviour
         selectedDelete.SetActive(false);
         vertical.SetActive(false);
         Horitzotal.SetActive(false);
+        repair.SetActive(false);
     }
 
     private void Update()
     {
+        Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
+        if (!canSpawn(activeType, mouseWorldPosition))
+        {
+            h.color = cant;
+            vv.color = cant;
+        }
+        else if(canSpawn(activeType, mouseWorldPosition))
+        {
+            if (resources.resources < 25)
+            {
+                h.color = cant;
+                vv.color = cant;
+            }
+            else
+            {
+                h.color = can;
+                vv.color = can;
+            }
+        }
+
+        if(resources.resources < 5)
+        {
+            r.color = cantR;
+        }
+        else
+        {
+            r.color = Color.black;
+        }
 
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = 5f;
@@ -74,7 +113,7 @@ public class PlacementManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && buildMode == false && deleteMode == false && wallMode == true && !EventSystem.current.IsPointerOverGameObject())
         {
-            Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
+            //Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
             if (canSpawn(activeType, mouseWorldPosition))
             {
                 if (resources.resources >= 25)
@@ -100,6 +139,7 @@ public class PlacementManager : MonoBehaviour
 
     public void BuildMode()
     {
+        repair.SetActive(true);
         buildMode = true;
         deleteMode = false;
         wallMode = false;
@@ -115,6 +155,7 @@ public class PlacementManager : MonoBehaviour
 
     public void DeleteMode()
     {
+        repair.SetActive(false);
         deleteMode = true;
         wallMode = false;
         buildMode = false;
@@ -130,6 +171,7 @@ public class PlacementManager : MonoBehaviour
 
     public void SetActiveType(BuildingTypeSo building)
     {
+        repair.SetActive(false);
         activeType = building;
         buildMode = false;
         deleteMode = false;
@@ -164,6 +206,7 @@ public class PlacementManager : MonoBehaviour
             if(c.transform.tag == "Wall")
             {
                 return false;
+                Horitzotal.GetComponent<SpriteRenderer>().color = Color.red;
             }
 
             if (c.transform.tag == "Player")
@@ -180,6 +223,7 @@ public class PlacementManager : MonoBehaviour
         }
 
         return true;
+        Horitzotal.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
 }
