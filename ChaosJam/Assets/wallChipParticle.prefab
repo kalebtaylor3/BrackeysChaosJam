@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8328393528754599785}
   - component: {fileID: 8328393528754599784}
   - component: {fileID: 3197146789602119503}
+  - component: {fileID: 5622164643116084169}
   m_Layer: 0
   m_Name: wallChipParticle
   m_TagString: Untagged
@@ -4767,3 +4768,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c10c9dfca9d6424ea96adf21320d650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!210 &5622164643116084169
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8328393528754599703}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1000

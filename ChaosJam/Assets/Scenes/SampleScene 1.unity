@@ -805,6 +805,7 @@ GameObject:
   - component: {fileID: 948059826}
   - component: {fileID: 948059827}
   - component: {fileID: 948059828}
+  - component: {fileID: 948059829}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -963,6 +964,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   repairMode: 0
+--- !u!210 &948059829
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948059818}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1000
 --- !u!1 &1004085057
 GameObject:
   m_ObjectHideFlags: 0
