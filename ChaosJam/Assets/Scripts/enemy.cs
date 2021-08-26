@@ -11,9 +11,10 @@ public class enemy : MonoBehaviour
     HealthSystem healthSystem;
     public Animator animations;
     public Transform holder;
-    public static event Action<int> OnDeath;
+    public static event Action<int, enemy> OnDeath;
     public GameObject _bloodDeath;
     public GameObject _bloodChip;
+    bool hasHappened = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +43,11 @@ public class enemy : MonoBehaviour
         if(healthSystem.GetHealth() == 0)
         {
             Debug.Log("Dead Af");
-            OnDeath?.Invoke(5);
+            if (!hasHappened)
+            {
+                OnDeath?.Invoke(10, this);
+                hasHappened = true;
+            }
             StartCoroutine(Die());
             Instantiate(_bloodDeath, new Vector2(transform.position.x, transform.position.y + 0.2f), transform.rotation);
         }

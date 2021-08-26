@@ -21,6 +21,12 @@ public class PlacementManager : MonoBehaviour
     public GameObject _place;
     //public int wallCost = 24;
 
+    public GameObject vertical;
+    public GameObject Horitzotal;
+
+
+    public static event Action OnParticle;
+
     public GameObject selectedRepair;
     public GameObject selectedDelete;
 
@@ -30,6 +36,8 @@ public class PlacementManager : MonoBehaviour
     {
         selectedRepair.SetActive(false);
         selectedDelete.SetActive(false);
+        vertical.SetActive(false);
+        Horitzotal.SetActive(false);
     }
 
     private void Update()
@@ -72,8 +80,10 @@ public class PlacementManager : MonoBehaviour
                 if (resources.resources >= 25)
                 {
                     OnPlace?.Invoke(25);
-                    Instantiate(_place, mouseWorldPosition, transform.rotation);
-                    Instantiate(activeType.prefab, mouseWorldPosition, Quaternion.identity);
+
+                    OnParticle?.Invoke();
+                    Transform active = Instantiate(activeType.prefab, mouseWorldPosition, Quaternion.identity);
+                    //Instantiate(_place, mouseWorldPosition, active.rotation);
                 }
                 else
                 {
@@ -91,8 +101,12 @@ public class PlacementManager : MonoBehaviour
     public void BuildMode()
     {
         buildMode = true;
+        deleteMode = false;
+        wallMode = false;
         selectedRepair.SetActive(true);
         selectedDelete.SetActive(false);
+        vertical.SetActive(false);
+        Horitzotal.SetActive(false);
         foreach (BuildingTypeSo buildingTypeSo in ui.buildingbtnDic.Keys)
         {
             ui.buildingbtnDic[buildingTypeSo].Find("Selected").gameObject.SetActive(false);
@@ -106,6 +120,8 @@ public class PlacementManager : MonoBehaviour
         buildMode = false;
         selectedRepair.SetActive(false);
         selectedDelete.SetActive(true);
+        vertical.SetActive(false);
+        Horitzotal.SetActive(false);
         foreach (BuildingTypeSo buildingTypeSo in ui.buildingbtnDic.Keys)
         {
             ui.buildingbtnDic[buildingTypeSo].Find("Selected").gameObject.SetActive(false);
@@ -115,11 +131,21 @@ public class PlacementManager : MonoBehaviour
     public void SetActiveType(BuildingTypeSo building)
     {
         activeType = building;
-
         buildMode = false;
         deleteMode = false;
         selectedRepair.SetActive(false);
         selectedDelete.SetActive(false);
+
+        if(activeType.prefab.name == "VerticalWallHolder")
+        {
+            vertical.SetActive(true);
+            Horitzotal.SetActive(false);
+        }
+        else
+        {
+            Horitzotal.SetActive(true);
+            vertical.SetActive(false);
+        }
     }
 
     public BuildingTypeSo GetActiveBuildingType()

@@ -12,7 +12,7 @@ public class wall : MonoBehaviour
     HealthSystem healthSystem;
     bool repairMode = false;
     bool deleteMode = false;
-    public static event Action<int, HealthSystem> UseResources;
+    public static event Action<int, HealthSystem, wall> UseResources;
     public static event Action<int> GetResources;
     public GameObject _woodChip;
     public GameObject _bloodChip;
@@ -26,6 +26,9 @@ public class wall : MonoBehaviour
         healthBarTransform.SetParent(this.transform);
         HealthBar healthBar = healthBarTransform.GetComponent<HealthBar>();
         healthBar.Setup(healthSystem);
+
+        Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
+        Instantiate(_delete, mouseWorldPosition, this.GetComponent<Transform>().rotation);
     }
 
     private void OnEnable()
@@ -35,6 +38,8 @@ public class wall : MonoBehaviour
 
         PlacementManager.delMode += DeleteMode;
         BuildingTypeSelectUI.DisableDelete += NotDeleteMode;
+
+        PlacementManager.OnParticle += SpawnParticle;
     }
 
     private void OnDisable()
@@ -90,7 +95,7 @@ public class wall : MonoBehaviour
 
                         c.GetComponent<wall>().DestroyWall();
                         Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
-                        Instantiate(_delete, mouseWorldPosition, transform.rotation);
+                        Instantiate(_delete, mouseWorldPosition, c.GetComponent<Transform>().rotation);
                         GetResources?.Invoke(20);
                     }
 
@@ -99,6 +104,11 @@ public class wall : MonoBehaviour
             }
 
         }
+    }
+
+    void SpawnParticle()
+    {
+
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -147,7 +157,7 @@ public class wall : MonoBehaviour
 
     public void Repair()
     {
-        UseResources?.Invoke(5, this.healthSystem);
+        UseResources?.Invoke(5, this.healthSystem, this);
     }
 
     //private void OnMouseDown()
