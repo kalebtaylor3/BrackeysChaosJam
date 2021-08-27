@@ -30,17 +30,18 @@ public class WaveController : MonoBehaviour
 
     private void Start()
     {
-        nextWave.GetComponent<Text>().text = "";
+        nextWave.GetComponent<Text>().text = "Next wave starting in 00:0" + 5;
     }
 
     private void Update()
     {
 
-        if(Timer >= RoundLenght - 5)
+        if(Timer >= RoundLenght - 6)
         {
             nextWave.SetActive(true);
             if (takingAway == false && secondsLeft > 0)
             {
+                nextWave.GetComponent<Text>().text = "Next wave starting in 00:0" + secondsLeft;
                 StartCoroutine(TimerTake());
             }
         }
