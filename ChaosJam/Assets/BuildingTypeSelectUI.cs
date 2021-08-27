@@ -16,7 +16,6 @@ public class BuildingTypeSelectUI : MonoBehaviour
         Transform buildingButtonTemplate = transform.Find("BuildingButtonTemplate");
         buildingButtonTemplate.gameObject.SetActive(false);
 
-
         buildingbtnDic = new Dictionary<BuildingTypeSo, Transform>();
 
         int index = 0;

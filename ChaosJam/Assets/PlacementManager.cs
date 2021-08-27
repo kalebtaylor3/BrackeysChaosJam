@@ -43,6 +43,11 @@ public class PlacementManager : MonoBehaviour
     public Color cantR;
     public Color cantT;
 
+    public AudioSource select;
+
+    public AudioSource placement;
+    public AudioSource deleteSound;
+
     float counter;
 
     private void Start()
@@ -134,13 +139,20 @@ public class PlacementManager : MonoBehaviour
 
         }
 
+        if (Input.GetMouseButtonDown(0) && deleteMode == true && !EventSystem.current.IsPointerOverGameObject())
+        {
+            deleteSound.Play();
+        }
+
         if (Input.GetMouseButtonDown(0) && buildMode == false && deleteMode == false && wallMode == true && !EventSystem.current.IsPointerOverGameObject())
         {
             //Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
             if (canSpawn(activeType, mouseWorldPosition))
             {
+
                 if (resources.resources >= 25)
                 {
+                    placement.Play();
                     //OnPlace?.Invoke(25);
                     if (activeType.prefab.name == "VerticalWallHolder")
                     {
@@ -174,6 +186,7 @@ public class PlacementManager : MonoBehaviour
 
     public void BuildMode()
     {
+        select.Play();
         repair.SetActive(true);
         buildMode = true;
         deleteMode = false;
@@ -191,6 +204,7 @@ public class PlacementManager : MonoBehaviour
 
     public void DeleteMode()
     {
+        select.Play();
         repair.SetActive(false);
         deleteMode = true;
         wallMode = false;
@@ -208,6 +222,7 @@ public class PlacementManager : MonoBehaviour
 
     public void SetActiveType(BuildingTypeSo building)
     {
+        select.Play();
         repair.SetActive(false);
         activeType = building;
         buildMode = false;

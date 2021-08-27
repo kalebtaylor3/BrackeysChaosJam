@@ -16,6 +16,8 @@ public class Boss : MonoBehaviour
     bool hasHappened = false;
     public Transform bosspos;
     public GameObject _bosschip;
+    public AudioSource hittingWall;
+    bool isHappening = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +72,11 @@ public class Boss : MonoBehaviour
     {
         if (collision.gameObject.tag == "Wall")
         {
+            if (!isHappening)
+            {
+                hittingWall.Play();
+                isHappening = true;
+            }
             healthSystem.Damage(0.55f);
             animations.SetBool("Attacking", true);
         }
@@ -90,6 +97,11 @@ public class Boss : MonoBehaviour
 
         if (collision.gameObject.tag == "Tree")
         {
+            if (!isHappening)
+            {
+                hittingWall.Play();
+                isHappening = true;
+            }
             healthSystem.Damage(0.15f);
             animations.SetBool("Attacking", true);
 

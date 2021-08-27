@@ -29,6 +29,9 @@ public class TurretAi : MonoBehaviour
     public Transform bigman;
     public GameObject _bloodChip;
     public GameObject _bloodDeath;
+    public AudioSource shooting;
+    public AudioSource delete;
+    bool happenOnce = false;
 
 
     private void OnEnable()
@@ -45,6 +48,7 @@ public class TurretAi : MonoBehaviour
         healthBarTransform.SetParent(this.transform);
         HealthBar healthBar = healthBarTransform.GetComponent<HealthBar>();
         healthBar.Setup(healthSystem);
+        happenOnce = false;
     }
 
     private void OnDisable()
@@ -81,7 +85,6 @@ public class TurretAi : MonoBehaviour
                 {
                     if (deleteMode == true && Input.GetMouseButtonDown(0))
                     {
-
                         c.GetComponent<TurretAi>().DestroyTurret();
                         Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
                         //Instantiate(_delete, mouseWorldPosition, c.GetComponent<Transform>().rotation);
@@ -104,11 +107,18 @@ public class TurretAi : MonoBehaviour
             onShoot?.Invoke();
             GameObject particle = Instantiate(_shooting, shootingPoint.position, bigman.rotation);
             particle.transform.SetParent(bigman);
+                if(!happenOnce)
+                {
+                    shooting.Play();
+                    happenOnce = true;
+                }
 
         }
         else if(!looking)
         {
             animations.SetBool("shoot", false);
+            shooting.Stop();
+            happenOnce = false;
         }
     }
 

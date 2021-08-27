@@ -9,7 +9,7 @@ public class wall : MonoBehaviour
 
     public Transform HealthBar;
     Transform healthBarTransform;
-    HealthSystem healthSystem;
+    public HealthSystem healthSystem;
     bool repairMode = false;
     bool deleteMode = false;
     public static event Action<int, HealthSystem, wall> UseResources;
@@ -19,6 +19,9 @@ public class wall : MonoBehaviour
     public GameObject _bossblood;
     public GameObject _delete;
     public GameObject _bosschip;
+    //public AudioSource hittingWall;
+
+    bool happenOnce = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,8 +65,7 @@ public class wall : MonoBehaviour
         {
             GameObject holder = GameObject.Find("VerticalWallHolder");
             Destroy(this.gameObject);
-
-            if(holder != null)
+            if (holder != null)
             {
                 Destroy(holder);
             }
@@ -94,7 +96,6 @@ public class wall : MonoBehaviour
 
                     if (deleteMode == true && Input.GetMouseButtonDown(0))
                     {
-
                         c.GetComponent<wall>().DestroyWall();
                         Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
                         Instantiate(_delete, mouseWorldPosition, c.GetComponent<Transform>().rotation);
@@ -115,6 +116,13 @@ public class wall : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+
+        if (!happenOnce)
+        {
+            //hittingWall.Play();
+            happenOnce = true;
+        }
+
         if (collision.gameObject.tag == "Enemy")
         {
             healthSystem.Damage(0.25f);
@@ -130,6 +138,11 @@ public class wall : MonoBehaviour
             Instantiate(_bossblood, new Vector2(collision.transform.position.x, collision.transform.position.y + 0.2f), transform.rotation);
 
         }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        //hittingWall.Stop();
     }
 
     void RepairMode()

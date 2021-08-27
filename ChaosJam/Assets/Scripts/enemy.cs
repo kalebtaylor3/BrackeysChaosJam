@@ -16,6 +16,13 @@ public class enemy : MonoBehaviour
     public GameObject _bloodChip;
     public GameObject _wallchip;
     bool hasHappened = false;
+    public AudioSource destroyWall;
+    public AudioSource hittingWall;
+    public AudioSource shooting;
+
+    bool happenOnce = false;
+
+    bool isHappening = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -76,8 +83,19 @@ public class enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Wall")
         {
+            if(!isHappening)
+            {
+                hittingWall.Play();
+                isHappening = true;
+            }
             healthSystem.Damage(0.55f);
             animations.SetBool("Attacking", true);
+        }
+
+        if(collision.gameObject.GetComponent<wall>().healthSystem.GetHealth() <= 0)
+        {
+            Debug.Log("wall destyoryted");
+            destroyWall.Play();
         }
 
         if (collision.gameObject.tag == "Player")
@@ -90,6 +108,11 @@ public class enemy : MonoBehaviour
 
         if (collision.gameObject.tag == "Turret")
         {
+            if (!happenOnce)
+            {
+                shooting.Play();
+            }
+            shooting.Play();
             //healthSystem.Damage(0.5f);
             animations.SetBool("Attacking", true);
 
@@ -106,6 +129,11 @@ public class enemy : MonoBehaviour
 
         if (collision.gameObject.tag == "Tree")
         {
+            if (!isHappening)
+            {
+                hittingWall.Play();
+                isHappening = true;
+            }
             healthSystem.Damage(0.15f);
             animations.SetBool("Attacking", true);
 
@@ -116,6 +144,9 @@ public class enemy : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         animations.SetBool("Attacking", false);
+        hasHappened = false;
+        isHappening = false;
+        hittingWall.Stop();
     }
 
     void spawnBlood()
