@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using CodeMonkey.Utils;
 
 public class TurretAi : MonoBehaviour
 {
@@ -14,12 +15,50 @@ public class TurretAi : MonoBehaviour
     private Collider2D target;
     public static event Action onShoot; 
     bool looking = false;
-
+    bool deleteMode = false;
     public Animator animations;
+    public GameObject _delete;
+    public static event Action<int> GetResources;
 
+    private void OnEnable()
+    {
+        PlacementManager.delMode += DeleteMode;
+    }
     // Update is called once per frame
     void Update()
     {
+
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = 5f;
+
+        Vector2 v = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        Collider2D[] col = Physics2D.OverlapPointAll(v);
+
+        if (col.Length > 0)
+        {
+            foreach (Collider2D c in col)
+            {
+                //Debug.Log("Collided with: " + c.collider2D.gameObject.name);
+                //targetPos = c.collider2D.gameObject.transform.position;
+
+                if (c.gameObject.tag == "Turret")
+                {
+                    if (deleteMode == true && Input.GetMouseButtonDown(0))
+                    {
+
+                        c.GetComponent<TurretAi>().DestroyTurret();
+                        Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
+                        //Instantiate(_delete, mouseWorldPosition, c.GetComponent<Transform>().rotation);
+                        GetResources?.Invoke(20);
+                    }
+
+                }
+
+            }
+
+        }
+
         CheckEnviorment();
         LookAtTarget();
 
@@ -34,6 +73,12 @@ public class TurretAi : MonoBehaviour
         {
             animations.SetBool("shoot", false);
         }
+    }
+
+
+    void DestroyTurret()
+    {
+        Destroy(this.gameObject);
     }
 
     private void CheckEnviorment()
@@ -57,6 +102,12 @@ public class TurretAi : MonoBehaviour
         {
             looking = false;
         }
+    }
+
+    void DeleteMode()
+    {
+
+        deleteMode = true;
     }
     private void OnDrawGizmosSelected()
     {

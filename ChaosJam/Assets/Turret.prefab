@@ -143,9 +143,10 @@ GameObject:
   - component: {fileID: 4972463212926673962}
   - component: {fileID: 4972463212926673960}
   - component: {fileID: 6293024057752614073}
+  - component: {fileID: -1669302924073690519}
   m_Layer: 0
   m_Name: Turret
-  m_TagString: Player
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -187,6 +188,7 @@ MonoBehaviour:
   firepoint: {fileID: 4972463211568915564}
   fireDelay: 1
   animations: {fileID: 6549717767092752268}
+  _delete: {fileID: 100006, guid: b26161bd088b9ef4992538643ba979ba, type: 3}
 --- !u!210 &4972463212926673960
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -214,3 +216,29 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2
+--- !u!61 &-1669302924073690519
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4972463212926673963}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.12082386, y: -0.054658413}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2416477, y: 0.8906832}
+  m_EdgeRadius: 0

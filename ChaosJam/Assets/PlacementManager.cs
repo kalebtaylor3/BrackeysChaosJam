@@ -24,6 +24,7 @@ public class PlacementManager : MonoBehaviour
 
     public GameObject vertical;
     public GameObject Horitzotal;
+    public GameObject Turret;
     public GameObject repair;
 
 
@@ -34,11 +35,13 @@ public class PlacementManager : MonoBehaviour
     public SpriteRenderer h;
     public SpriteRenderer vv;
     public SpriteRenderer r;
+    public SpriteRenderer t;
 
 
     public Color can;
     public Color cant;
     public Color cantR;
+    public Color cantT;
 
     float counter;
 
@@ -48,6 +51,7 @@ public class PlacementManager : MonoBehaviour
         selectedDelete.SetActive(false);
         vertical.SetActive(false);
         Horitzotal.SetActive(false);
+        Turret.SetActive(false);
         repair.SetActive(false);
     }
 
@@ -103,10 +107,25 @@ public class PlacementManager : MonoBehaviour
                     delMode?.Invoke();
                 }
             }
+            else if(c.gameObject.tag == "Turret")
+            {
+                if (deleteMode)
+                {
+                    delMode?.Invoke();
+                }
+            }
             else
             {
                 makeInvisable?.Invoke();
                 DisabledelMode?.Invoke();
+            }
+
+            if (c.gameObject.tag == "Turret")
+            {
+                if (deleteMode)
+                {
+                    delMode?.Invoke();
+                }
             }
 
         }
@@ -118,7 +137,19 @@ public class PlacementManager : MonoBehaviour
             {
                 if (resources.resources >= 25)
                 {
-                    OnPlace?.Invoke(25);
+                    //OnPlace?.Invoke(25);
+                    if (activeType.prefab.name == "VerticalWallHolder")
+                    {
+                        OnPlace?.Invoke(25);
+                    }
+                    else if (activeType.prefab.name == "HorizontalWall")
+                    {
+                        OnPlace?.Invoke(25);
+                    }
+                    else
+                    {
+                        OnPlace?.Invoke(30);
+                    }
 
                     OnParticle?.Invoke();
                     Transform active = Instantiate(activeType.prefab, mouseWorldPosition, Quaternion.identity);
@@ -146,6 +177,7 @@ public class PlacementManager : MonoBehaviour
         selectedRepair.SetActive(true);
         selectedDelete.SetActive(false);
         vertical.SetActive(false);
+        Turret.SetActive(false);
         Horitzotal.SetActive(false);
         foreach (BuildingTypeSo buildingTypeSo in ui.buildingbtnDic.Keys)
         {
@@ -163,6 +195,7 @@ public class PlacementManager : MonoBehaviour
         selectedDelete.SetActive(true);
         vertical.SetActive(false);
         Horitzotal.SetActive(false);
+        Turret.SetActive(false);
         foreach (BuildingTypeSo buildingTypeSo in ui.buildingbtnDic.Keys)
         {
             ui.buildingbtnDic[buildingTypeSo].Find("Selected").gameObject.SetActive(false);
@@ -182,10 +215,18 @@ public class PlacementManager : MonoBehaviour
         {
             vertical.SetActive(true);
             Horitzotal.SetActive(false);
+            Turret.SetActive(false);
+        }
+        else if(activeType.prefab.name == "HorizontalWall")
+        {
+            Horitzotal.SetActive(true);
+            vertical.SetActive(false);
+            Turret.SetActive(false);
         }
         else
         {
-            Horitzotal.SetActive(true);
+            Turret.SetActive(true);
+            Horitzotal.SetActive(false);
             vertical.SetActive(false);
         }
     }

@@ -22,6 +22,16 @@ public class Resourses : MonoBehaviour
         PlacementManager.OnPlace += UseResources;
         wall.UseResources += Repair;
         wall.GetResources += IncreaseResouces;
+        TurretAi.GetResources += IncreaseResouces;
+    }
+
+    private void OnDisable()
+    {
+        enemy.OnDeath -= IncreaseZombieResouces;
+        PlacementManager.OnPlace -= UseResources;
+        wall.UseResources -= Repair;
+        wall.GetResources -= IncreaseResouces;
+        TurretAi.GetResources -= IncreaseResouces;
     }
 
     private void Start()

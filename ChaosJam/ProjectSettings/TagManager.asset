@@ -9,6 +9,7 @@ TagManager:
   - floor
   - Tree
   - Boss
+  - Turret
   layers:
   - Default
   - TransparentFX
