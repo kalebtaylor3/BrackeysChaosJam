@@ -8,6 +8,7 @@ public class GameOver : MonoBehaviour
     int playerCounter = 1;
     int activePlayers = 1;
     bool isDone = false;
+    public AudioSource bossDeath;
     private void OnEnable()
     {
         PlayerActivator.OnSpawn += Increase;
@@ -54,6 +55,7 @@ public class GameOver : MonoBehaviour
 
     void winScreen()
     {
+        bossDeath.Play();
         StartCoroutine(winDelay());
     }
 

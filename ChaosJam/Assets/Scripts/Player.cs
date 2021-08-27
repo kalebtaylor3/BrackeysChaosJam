@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
     public GameObject _bloodDeath;
     public GameObject _bloodChip;
     bool isDone = false;
+    public AudioSource death;
+    bool once = false;
+    public AudioSource hit;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +45,7 @@ public class Player : MonoBehaviour
 
     IEnumerator Die()
     {
+        death.Play();
         yield return new WaitForSeconds(0.1f);
         Destroy(this.gameObject);
     }
@@ -69,6 +73,14 @@ public class Player : MonoBehaviour
             }
 
             transform.rotation = closestEnemy.transform.rotation;
+
+            closestEnemy.healthSystem.Damage(0.95f);
+            if(!once)
+            {
+                hit.Play();
+                death.Play();
+                once = true;
+            }
         }
 
         if (collision.gameObject.tag == "Boss")
@@ -98,5 +110,8 @@ public class Player : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         animations.SetBool("Attacking", false);
+        once = false;
+        death.Stop();
+        hit.Stop();
     }
 }

@@ -90,7 +90,7 @@ public class wall : MonoBehaviour
                 {
                     if(repairMode == true && Input.GetMouseButtonDown(0))
                     {
-
+                        //play repair sound efFECT
                         c.GetComponent<wall>().Repair();
                     }
 

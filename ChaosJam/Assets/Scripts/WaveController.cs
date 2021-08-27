@@ -27,6 +27,7 @@ public class WaveController : MonoBehaviour
     public GameObject nextWave;
     public int secondsLeft = 5;
     public bool takingAway = false;
+    public AudioSource newRound;
 
     private void Start()
     {
@@ -65,6 +66,7 @@ public class WaveController : MonoBehaviour
             {
                 Timer = 0;
                 waves++;
+                newRound.Play();
                 spawnCounter = 0;
                 nextWave.SetActive(false);
                 nextWave.GetComponent<Text>().text = "";

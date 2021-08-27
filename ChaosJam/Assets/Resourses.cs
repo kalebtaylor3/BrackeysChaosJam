@@ -11,9 +11,11 @@ public class Resourses : MonoBehaviour
     public int resources = 200;
     public Text text;
     bool hasHappened = false;
+    public AudioSource repairSound;
 
     [SerializeField] private GameObject floatingText;
     [SerializeField] private GameObject Dust;
+    public AudioSource Death;
 
     private void OnEnable()
     {
@@ -48,6 +50,8 @@ public class Resourses : MonoBehaviour
     {
         if (resources >= amount && repair.GetHealth() < 100)
         {
+
+            repairSound.Play();
             resources = resources - amount;
             repair.RepairHealth();
             Debug.Log(resources);
@@ -86,6 +90,7 @@ public class Resourses : MonoBehaviour
 
     void IncreaseZombieResouces(int Amount, enemy whichone)
     {
+        Death.Play();
         Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
         GameObject prefabText = Instantiate(floatingText, whichone.transform.position, Quaternion.identity);
         prefabText.GetComponentInChildren<TextMesh>().text = "+" + Amount.ToString();

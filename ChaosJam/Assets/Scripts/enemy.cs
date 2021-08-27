@@ -81,6 +81,9 @@ public class enemy : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+
+        animations.SetBool("Attacking", true);
+
         if (collision.gameObject.tag == "Wall")
         {
             if(!isHappening)
@@ -112,7 +115,6 @@ public class enemy : MonoBehaviour
             {
                 shooting.Play();
             }
-            shooting.Play();
             //healthSystem.Damage(0.5f);
             animations.SetBool("Attacking", true);
 

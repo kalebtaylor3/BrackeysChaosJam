@@ -18,6 +18,10 @@ public class Boss : MonoBehaviour
     public GameObject _bosschip;
     public AudioSource hittingWall;
     bool isHappening = false;
+    bool willhappen = false;
+    bool happen = false;
+    public AudioSource shooting;
+    public AudioSource beingHit;
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +74,13 @@ public class Boss : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+
+        if (!happen)
+        {
+            beingHit.Play();
+            happen = true;
+        }
+
         if (collision.gameObject.tag == "Wall")
         {
             if (!isHappening)
@@ -83,6 +94,11 @@ public class Boss : MonoBehaviour
 
         if (collision.gameObject.tag == "Turret")
         {
+            if (!willhappen)
+            {
+                shooting.Play();
+                willhappen = true;
+            }
             Instantiate(_bloodChip, new Vector2(transform.position.x, transform.position.y + 0.2f), transform.rotation);
             animations.SetBool("Attacking", true);
         }
@@ -112,5 +128,11 @@ public class Boss : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         animations.SetBool("Attacking", false);
+        hittingWall.Stop();
+        shooting.Stop();
+        beingHit.Stop();
+        isHappening = false;
+        willhappen = false;
+        happen = false;
     }
 }

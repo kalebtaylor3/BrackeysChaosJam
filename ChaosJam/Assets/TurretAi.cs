@@ -103,7 +103,7 @@ public class TurretAi : MonoBehaviour
         if(looking)
         {
             animations.SetBool("shoot", true);
-            target.GetComponent<enemy>().healthSystem.Damage(0.2f);
+            target.GetComponent<enemy>().healthSystem.Damage(0.6f);
             onShoot?.Invoke();
             GameObject particle = Instantiate(_shooting, shootingPoint.position, bigman.rotation);
             particle.transform.SetParent(bigman);
