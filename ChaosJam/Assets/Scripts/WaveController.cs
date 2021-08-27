@@ -38,7 +38,8 @@ public class WaveController : MonoBehaviour
 
         if(Timer >= RoundLenght - 5)
         {
-            if(takingAway == false && secondsLeft > 0)
+            nextWave.SetActive(true);
+            if (takingAway == false && secondsLeft > 0)
             {
                 StartCoroutine(TimerTake());
             }
@@ -64,9 +65,10 @@ public class WaveController : MonoBehaviour
                 Timer = 0;
                 waves++;
                 spawnCounter = 0;
+                nextWave.SetActive(false);
                 nextWave.GetComponent<Text>().text = "";
+                secondsLeft = 5;
                 takingAway = false;
-                secondsLeft = 6;
                 OnDifficulty?.Invoke(this);
                 resources.resources = resources.resources + 75;
             }

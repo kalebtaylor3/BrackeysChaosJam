@@ -43,7 +43,7 @@ public class PlayerActivator : MonoBehaviour
             switch (wave)
             {
                 case 1:
-                    if (waves.Timer >= waves.RoundLenght - 5)
+                    if (waves.Timer >= waves.RoundLenght - 8)
                     {
                         NextPlayerIndicator[0].SetActive(true);
                         NextPlayerIndicator[1].SetActive(false);
@@ -65,7 +65,7 @@ public class PlayerActivator : MonoBehaviour
                     }
                     break;
                 case 3:
-                    if (waves.Timer >= waves.RoundLenght - 5)
+                    if (waves.Timer >= waves.RoundLenght - 8)
                     {
                         NextPlayerIndicator[0].SetActive(false);
                         NextPlayerIndicator[1].SetActive(true);
@@ -88,7 +88,7 @@ public class PlayerActivator : MonoBehaviour
                     }
                     break;
                 case 5:
-                    if (waves.Timer >= waves.RoundLenght - 5)
+                    if (waves.Timer >= waves.RoundLenght - 8)
                     {
                         NextPlayerIndicator[0].SetActive(false);
                         NextPlayerIndicator[1].SetActive(false);
@@ -111,7 +111,7 @@ public class PlayerActivator : MonoBehaviour
                     }
                     break;
                 case 7:
-                    if (waves.Timer >= waves.RoundLenght - 5)
+                    if (waves.Timer >= waves.RoundLenght - 8)
                     {
                         NextPlayerIndicator[0].SetActive(false);
                         NextPlayerIndicator[1].SetActive(false);
