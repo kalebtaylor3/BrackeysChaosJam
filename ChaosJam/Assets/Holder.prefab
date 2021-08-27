@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8298941463169968675}
   - component: {fileID: 2328888406122629906}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,6 +59,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Zombie
+      objectReference: {fileID: 0}
+    - target: {fileID: 311994611768779418, guid: 4f55bc3ac47dbb0409d595adee46bb64,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 311994611768779420, guid: 4f55bc3ac47dbb0409d595adee46bb64,
         type: 3}

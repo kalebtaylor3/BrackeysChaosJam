@@ -8,7 +8,7 @@ public class enemy : MonoBehaviour
 
     public Transform HealthBar;
     Transform healthBarTransform;
-    HealthSystem healthSystem;
+    public HealthSystem healthSystem;
     public Animator animations;
     public Transform holder;
     public static event Action<int, enemy> OnDeath;
@@ -28,6 +28,12 @@ public class enemy : MonoBehaviour
     private void OnEnable()
     {
         //Bullet.OnBullet += TakeDamage;
+        TurretAi.onShoot += spawnBlood;
+    }
+
+    private void OnDisable()
+    {
+        TurretAi.onShoot -= spawnBlood;
     }
 
     // Update is called once per frame
@@ -93,5 +99,10 @@ public class enemy : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         animations.SetBool("Attacking", false);
+    }
+
+    void spawnBlood()
+    {
+        Instantiate(_bloodChip, new Vector2(transform.position.x, transform.position.y + 0.2f), transform.rotation);
     }
 }
