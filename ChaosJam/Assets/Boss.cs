@@ -7,7 +7,7 @@ public class Boss : MonoBehaviour
 {
     public Transform HealthBar;
     Transform healthBarTransform;
-    HealthSystem healthSystem;
+    public HealthSystem healthSystem;
     public Animator animations;
     public Transform holder;
     public static event Action OnDeath;
@@ -15,6 +15,7 @@ public class Boss : MonoBehaviour
     public GameObject _bloodChip;
     bool hasHappened = false;
     public Transform bosspos;
+    public GameObject _bosschip;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,12 +74,26 @@ public class Boss : MonoBehaviour
             animations.SetBool("Attacking", true);
         }
 
+        if (collision.gameObject.tag == "Turret")
+        {
+            Instantiate(_bloodChip, new Vector2(transform.position.x, transform.position.y + 0.2f), transform.rotation);
+            animations.SetBool("Attacking", true);
+        }
+
         if (collision.gameObject.tag == "Player")
         {
             healthSystem.Damage(0.25f);
             animations.SetBool("Attacking", true);
 
             Instantiate(_bloodChip, new Vector2(transform.position.x, transform.position.y + 0.2f), transform.rotation);
+        }
+
+        if (collision.gameObject.tag == "Tree")
+        {
+            healthSystem.Damage(0.15f);
+            animations.SetBool("Attacking", true);
+
+            Instantiate(_bosschip, new Vector2(transform.position.x, transform.position.y + 0.2f), transform.rotation);
         }
     }
 

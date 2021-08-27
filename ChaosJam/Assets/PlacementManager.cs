@@ -62,18 +62,22 @@ public class PlacementManager : MonoBehaviour
         {
             h.color = cant;
             vv.color = cant;
+            t.color = cant;
         }
         else if(canSpawn(activeType, mouseWorldPosition))
         {
+
             if (resources.resources < 25)
             {
                 h.color = cant;
                 vv.color = cant;
+                t.color = cant;
             }
             else
             {
                 h.color = can;
                 vv.color = can;
+                t.color = can;
             }
         }
 
@@ -148,7 +152,7 @@ public class PlacementManager : MonoBehaviour
                     }
                     else
                     {
-                        OnPlace?.Invoke(30);
+                        OnPlace?.Invoke(40);
                     }
 
                     OnParticle?.Invoke();
@@ -247,7 +251,6 @@ public class PlacementManager : MonoBehaviour
             if(c.transform.tag == "Wall")
             {
                 return false;
-                Horitzotal.GetComponent<SpriteRenderer>().color = Color.red;
             }
 
             if (c.transform.tag == "Player")
@@ -256,6 +259,11 @@ public class PlacementManager : MonoBehaviour
             }
 
             if (c.transform.tag == "Tree")
+            {
+                return false;
+            }
+
+            if (c.transform.tag == "Turret")
             {
                 return false;
             }

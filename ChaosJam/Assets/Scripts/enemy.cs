@@ -14,6 +14,7 @@ public class enemy : MonoBehaviour
     public static event Action<int, enemy> OnDeath;
     public GameObject _bloodDeath;
     public GameObject _bloodChip;
+    public GameObject _wallchip;
     bool hasHappened = false;
     // Start is called before the first frame update
     void Start()
@@ -87,12 +88,28 @@ public class enemy : MonoBehaviour
             Instantiate(_bloodChip, new Vector2(transform.position.x, transform.position.y + 0.2f), transform.rotation);
         }
 
+        if (collision.gameObject.tag == "Turret")
+        {
+            //healthSystem.Damage(0.5f);
+            animations.SetBool("Attacking", true);
+
+            Instantiate(_bloodChip, new Vector2(transform.position.x, transform.position.y + 0.2f), transform.rotation);
+        }
+
         if (collision.gameObject.tag == "Boss")
         {
             healthSystem.Damage(1f);
             animations.SetBool("Attacking", true);
 
             Instantiate(_bloodChip, new Vector2(transform.position.x, transform.position.y + 0.2f), transform.rotation);
+        }
+
+        if (collision.gameObject.tag == "Tree")
+        {
+            healthSystem.Damage(0.15f);
+            animations.SetBool("Attacking", true);
+
+            Instantiate(_wallchip, new Vector2(transform.position.x, transform.position.y + 0.2f), transform.rotation);
         }
     }
 

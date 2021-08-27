@@ -55,6 +55,12 @@ PrefabInstance:
       propertyPath: holder
       value: 
       objectReference: {fileID: 8298941463169968675}
+    - target: {fileID: 311994611768779416, guid: 4f55bc3ac47dbb0409d595adee46bb64,
+        type: 3}
+      propertyPath: _wallchip
+      value: 
+      objectReference: {fileID: 8328393528754599703, guid: b279a79eea0d9b042a551b16e0d50144,
+        type: 3}
     - target: {fileID: 311994611768779418, guid: 4f55bc3ac47dbb0409d595adee46bb64,
         type: 3}
       propertyPath: m_Name
