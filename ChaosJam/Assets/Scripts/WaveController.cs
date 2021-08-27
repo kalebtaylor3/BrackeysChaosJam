@@ -28,16 +28,22 @@ public class WaveController : MonoBehaviour
     public int secondsLeft = 5;
     public bool takingAway = false;
     public AudioSource newRound;
+    public GameObject waveText;
 
     private void Start()
     {
+        int currentWave = waves + 1;
         nextWave.GetComponent<Text>().text = "Next wave starting in 00:0" + 5;
+        waveText.GetComponent<Text>().text = "Wave " + currentWave + "/10";
     }
 
     private void Update()
     {
 
-        if(Timer >= RoundLenght - 6)
+        int currentWave = waves + 1;
+        waveText.GetComponent<Text>().text = "Wave " + currentWave + "/10";
+
+        if (Timer >= RoundLenght - 6)
         {
             nextWave.SetActive(true);
             if (takingAway == false && secondsLeft > 0)
