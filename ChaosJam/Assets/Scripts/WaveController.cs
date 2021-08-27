@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class WaveController : MonoBehaviour
 {
@@ -13,8 +14,8 @@ public class WaveController : MonoBehaviour
 
     [HideInInspector]
     public int waves;
-    private float Timer;
-    private float SpawnTimer;
+    public float Timer;
+    public float SpawnTimer;
     public float RoundLenght;
     public float spawnTime;
     public float spawnLenght;
@@ -23,8 +24,30 @@ public class WaveController : MonoBehaviour
     bool happenOnce = false;
     public Resourses resources;
 
+    public GameObject nextWave;
+    public int secondsLeft = 5;
+    public bool takingAway = false;
+
+    private void Start()
+    {
+        nextWave.GetComponent<Text>().text = "";
+    }
+
     private void Update()
     {
+
+        if(Timer >= RoundLenght - 5)
+        {
+            if(takingAway == false && secondsLeft > 0)
+            {
+                StartCoroutine(TimerTake());
+            }
+        }
+        else
+        {
+            nextWave.GetComponent<Text>().text = "";
+        }
+
         OnWave?.Invoke(waves);
 
         if (waves <= 9)
@@ -41,6 +64,9 @@ public class WaveController : MonoBehaviour
                 Timer = 0;
                 waves++;
                 spawnCounter = 0;
+                nextWave.GetComponent<Text>().text = "";
+                takingAway = false;
+                secondsLeft = 6;
                 OnDifficulty?.Invoke(this);
                 resources.resources = resources.resources + 75;
             }
@@ -75,5 +101,14 @@ public class WaveController : MonoBehaviour
         {
             Debug.Log("No longer spawning");
         }
+    }
+
+    IEnumerator TimerTake()
+    {
+        takingAway = true;
+        yield return new WaitForSeconds(1);
+        secondsLeft -= 1;
+        nextWave.GetComponent<Text>().text = "Next wave starting in 00:0" + secondsLeft;
+        takingAway = false;
     }
 }

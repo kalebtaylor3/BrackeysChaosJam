@@ -18,7 +18,7 @@ public class Dificulty : MonoBehaviour
     void ChangeDifficulty(WaveController stats)
     {
         float IncreaseMultuplier = 1.10f;
-        float DecreaseMultiplier = 0.25f;
+        float DecreaseMultiplier = 0.7f;
 
         stats.RoundLenght = stats.RoundLenght * IncreaseMultuplier;
         stats.spawnTime = stats.spawnTime * DecreaseMultiplier;
