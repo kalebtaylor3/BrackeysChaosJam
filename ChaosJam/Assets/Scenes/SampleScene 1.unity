@@ -2898,9 +2898,11 @@ GameObject:
   - component: {fileID: 948059822}
   - component: {fileID: 948059824}
   - component: {fileID: 948059825}
+  - component: {fileID: 948059834}
   - component: {fileID: 948059826}
   - component: {fileID: 948059827}
   - component: {fileID: 948059828}
+  - component: {fileID: 948059833}
   - component: {fileID: 948059829}
   - component: {fileID: 948059823}
   - component: {fileID: 948059830}
@@ -2964,7 +2966,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af601ede7005444488216c5b037944ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 924191313340347162, guid: b8b6358471cb54340b33320ca9fb7c93, type: 3}
   Boss: {fileID: 450654989404446295, guid: d28a52bb5944c004bb9fe7e923ecc762, type: 3}
   LeftSpawns:
   - {fileID: 296771671}
@@ -3116,11 +3117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 771500fe5c44d27469db6146750b5a2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawns:
-  - {fileID: 296771671}
-  - {fileID: 1431235750}
-  - {fileID: 1994056776}
-  - {fileID: 1942422316}
 --- !u!114 &948059826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3465,6 +3461,39 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &948059833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948059818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7bf9e0f4d8a8e9418b50f2d9918f894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: Zombie
+    prefab: {fileID: 924191313340347162, guid: b8b6358471cb54340b33320ca9fb7c93, type: 3}
+    size: 300
+--- !u!114 &948059834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948059818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092647461f73b854a92cc5bb80cd771e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawns:
+  - {fileID: 296771671}
+  - {fileID: 1431235750}
+  - {fileID: 1994056776}
+  - {fileID: 1942422316}
 --- !u!1 &958935481 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8139894637011128324, guid: d623fe523d0685f40ae5b467a921d3af,

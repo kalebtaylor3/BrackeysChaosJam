@@ -11,6 +11,7 @@ TagManager:
   - Boss
   - Turret
   - music
+  - Zombie
   layers:
   - Default
   - TransparentFX
