@@ -72,17 +72,26 @@ public class PlacementManager : MonoBehaviour
         else if(canSpawn(activeType, mouseWorldPosition))
         {
 
-            if (resources.resources < 25)
+            if (activeType.prefab.name == "Turret" && resources.resources < 40)
+            {
+                t.color = cant;
+            }
+
+            if (activeType.prefab.name == "Turret" && resources.resources >= 40)
+            {
+                t.color = can;
+            }
+
+
+            if (resources.resources < 25 && activeType.prefab.name != "Turret")
             {
                 h.color = cant;
                 vv.color = cant;
-                t.color = cant;
             }
             else
             {
                 h.color = can;
                 vv.color = can;
-                t.color = can;
             }
         }
 
@@ -149,32 +158,41 @@ public class PlacementManager : MonoBehaviour
             //Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
             if (canSpawn(activeType, mouseWorldPosition))
             {
-
-                if (resources.resources >= 25)
-                {
                     placement.Play();
                     //OnPlace?.Invoke(25);
-                    if (activeType.prefab.name == "VerticalWallHolder")
+                    if (activeType.prefab.name == "VerticalWallHolder" && resources.resources >= 25)
                     {
-                        OnPlace?.Invoke(25);
-                    }
-                    else if (activeType.prefab.name == "HorizontalWall")
-                    {
+                        OnParticle?.Invoke();
+                        Transform active = Instantiate(activeType.prefab, mouseWorldPosition, Quaternion.identity);
                         OnPlace?.Invoke(25);
                     }
                     else
                     {
-                        OnPlace?.Invoke(40);
+                        Debug.Log("Not enough reesources");
                     }
 
-                    OnParticle?.Invoke();
-                    Transform active = Instantiate(activeType.prefab, mouseWorldPosition, Quaternion.identity);
+                    if (activeType.prefab.name == "HorizontalWall" && resources.resources >= 25)
+                    {
+                        OnParticle?.Invoke();
+                        Transform active = Instantiate(activeType.prefab, mouseWorldPosition, Quaternion.identity);
+                        OnPlace?.Invoke(25);
+                    }
+                    else
+                    {
+                        Debug.Log("Not enough reesources");
+                    }
+
+                     if(activeType.prefab.name == "Turret" && resources.resources >= 40)
+                    {
+                        OnParticle?.Invoke();
+                        Transform active = Instantiate(activeType.prefab, mouseWorldPosition, Quaternion.identity);
+                        OnPlace?.Invoke(40);
+                    }
+                    else
+                    {
+                        Debug.Log("Not enough reesources");
+                    }
                     //Instantiate(_place, mouseWorldPosition, active.rotation);
-                }
-                else
-                {
-                    Debug.Log("Not enough reesources");
-                }
             }
             else
             {

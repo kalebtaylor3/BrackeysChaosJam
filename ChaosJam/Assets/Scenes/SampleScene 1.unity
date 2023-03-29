@@ -2897,7 +2897,6 @@ GameObject:
   - component: {fileID: 948059821}
   - component: {fileID: 948059822}
   - component: {fileID: 948059824}
-  - component: {fileID: 948059825}
   - component: {fileID: 948059834}
   - component: {fileID: 948059826}
   - component: {fileID: 948059827}
@@ -3105,18 +3104,6 @@ MonoBehaviour:
   - {fileID: 1857743094}
   - {fileID: 217615645}
   waves: {fileID: 948059819}
---- !u!114 &948059825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 948059818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 771500fe5c44d27469db6146750b5a2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &948059826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3476,7 +3463,7 @@ MonoBehaviour:
   pools:
   - tag: Zombie
     prefab: {fileID: 924191313340347162, guid: b8b6358471cb54340b33320ca9fb7c93, type: 3}
-    size: 300
+    size: 200
 --- !u!114 &948059834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20606,6 +20593,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1892551611}
     m_Modifications:
+    - target: {fileID: 3135067397970881165, guid: 43fed043f7450b44b841e6ed6f71d830,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.671
+      objectReference: {fileID: 0}
     - target: {fileID: 5402215340204142049, guid: 43fed043f7450b44b841e6ed6f71d830,
         type: 3}
       propertyPath: m_Constraints

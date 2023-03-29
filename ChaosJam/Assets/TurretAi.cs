@@ -33,6 +33,7 @@ public class TurretAi : MonoBehaviour
     public AudioSource delete;
     bool happenOnce = false;
 
+    enemy activeEnemy;
 
     private void OnEnable()
     {
@@ -70,56 +71,56 @@ public class TurretAi : MonoBehaviour
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = 5f;
 
-        Vector2 v = Camera.main.ScreenToWorldPoint(mousePosition);
+        Vector2 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-        Collider2D[] col = Physics2D.OverlapPointAll(v);
+        Collider2D[] colliders = Physics2D.OverlapPointAll(worldMousePosition);
 
-        if (col.Length > 0)
+        foreach (Collider2D collider in colliders)
         {
-            foreach (Collider2D c in col)
+            if (collider.CompareTag("Turret") && deleteMode && Input.GetMouseButtonDown(0))
             {
-                //Debug.Log("Collided with: " + c.collider2D.gameObject.name);
-                //targetPos = c.collider2D.gameObject.transform.position;
-
-                if (c.gameObject.tag == "Turret")
-                {
-                    if (deleteMode == true && Input.GetMouseButtonDown(0))
-                    {
-                        c.GetComponent<TurretAi>().DestroyTurret();
-                        Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
-                        //Instantiate(_delete, mouseWorldPosition, c.GetComponent<Transform>().rotation);
-                        GetResources?.Invoke(20);
-                    }
-
-                }
-
+                collider.GetComponent<TurretAi>().DestroyTurret();
+                Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
+                //Instantiate(_delete, mouseWorldPosition, collider.GetComponent<Transform>().rotation);
+                GetResources?.Invoke(20);
             }
-
         }
 
         CheckEnviorment();
         LookAtTarget();
 
-        if(looking)
+        if (looking && activeEnemy != null)
         {
             animations.SetBool("shoot", true);
-            target.GetComponent<enemy>().healthSystem.Damage(0.6f);
+            if (activeEnemy != null)
+            {
+                activeEnemy.healthSystem.Damage(0.6f);
+            }
             onShoot?.Invoke();
             GameObject particle = Instantiate(_shooting, shootingPoint.position, bigman.rotation);
             particle.transform.SetParent(bigman);
-                if(!happenOnce)
-                {
-                    shooting.Play();
-                    happenOnce = true;
-                }
 
+            if (!happenOnce)
+            {
+                shooting.Play();
+                happenOnce = true;
+            }
         }
-        else if(!looking)
+        else
         {
             animations.SetBool("shoot", false);
             shooting.Stop();
             happenOnce = false;
         }
+
+        if(activeEnemy == null)
+        {
+            animations.SetBool("shoot", false);
+            shooting.Stop();
+            happenOnce = false;
+        }
+
+        Debug.Log(activeEnemy);
     }
 
 
@@ -152,6 +153,11 @@ public class TurretAi : MonoBehaviour
     private void CheckEnviorment()
     {
         target = Physics2D.OverlapCircle(transform.position, scanRadius, layers);
+
+        if (target != null)
+            activeEnemy = target.GetComponent<enemy>();
+        else
+            activeEnemy = null;
     }
 
     IEnumerator Die()
@@ -162,17 +168,16 @@ public class TurretAi : MonoBehaviour
 
     private void LookAtTarget()
     {
-        if(target != null)
+        if (target != null)
         {
-            if(target.GetComponent<enemy>() != null)
+            if (target.TryGetComponent(out enemy closestEnemy))
             {
                 float distanceToClosestEnemy = Mathf.Infinity;
-                enemy closestEnemy = null;
-                enemy[] allEnemies = GameObject.FindObjectsOfType<enemy>();
+                enemy[] allEnemies = FindObjectsOfType<enemy>();
 
                 foreach (enemy currentEnemy in allEnemies)
                 {
-                    float distancetoEnemy = (currentEnemy.transform.position - this.transform.position).sqrMagnitude;
+                    float distancetoEnemy = (currentEnemy.transform.position - transform.position).sqrMagnitude;
                     if (distancetoEnemy < distanceToClosestEnemy)
                     {
                         distanceToClosestEnemy = distancetoEnemy;
@@ -180,39 +185,44 @@ public class TurretAi : MonoBehaviour
                     }
                 }
 
-                Vector2 Dir = closestEnemy.transform.position - transform.position;
-                float angle = Mathf.Atan2(Dir.y, Dir.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                looking = true;
-            }else if (target.GetComponent<Boss>() != null)
-            {
-
-                float distanceToClosestEnemy = Mathf.Infinity;
-                Boss closestEnemy = null;
-                Boss[] allEnemies = GameObject.FindObjectsOfType<Boss>();
-
-                foreach (Boss currentEnemy in allEnemies)
-                {
-                    float distancetoEnemy = (currentEnemy.transform.position - this.transform.position).sqrMagnitude;
-                    if (distancetoEnemy < distanceToClosestEnemy)
-                    {
-                        distanceToClosestEnemy = distancetoEnemy;
-                        closestEnemy = currentEnemy;
-                    }
-                }
-
-                GameObject particle = Instantiate(_shooting, shootingPoint.position, bigman.rotation);
-                particle.transform.SetParent(bigman);
-                target.GetComponent<Boss>().healthSystem.Damage(0.1f);
                 Vector2 Dir = closestEnemy.transform.position - transform.position;
                 float angle = Mathf.Atan2(Dir.y, Dir.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                 looking = true;
             }
+            else if (target.TryGetComponent(out Boss boss))
+            {
+                float distanceToClosestEnemy = Mathf.Infinity;
+                Boss[] allBosses = FindObjectsOfType<Boss>();
+
+                foreach (Boss currentBoss in allBosses)
+                {
+                    float distancetoBoss = (currentBoss.transform.position - transform.position).sqrMagnitude;
+                    if (distancetoBoss < distanceToClosestEnemy)
+                    {
+                        distanceToClosestEnemy = distancetoBoss;
+                        boss = currentBoss;
+                    }
+                }
+
+                GameObject particle = Instantiate(_shooting, shootingPoint.position, bigman.rotation);
+                particle.transform.SetParent(bigman);
+                boss.healthSystem.Damage(0.1f);
+                Vector2 Dir = boss.transform.position - transform.position;
+                float angle = Mathf.Atan2(Dir.y, Dir.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                looking = true;
+            }
+            else
+            {
+                looking = false;
+                activeEnemy = null;
+            }
         }
         else
         {
             looking = false;
+            activeEnemy = null;
         }
     }
 

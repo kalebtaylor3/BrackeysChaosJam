@@ -67,6 +67,10 @@ public class Resourses : MonoBehaviour
 
     void UseResources(int amount)
     {
+
+        if (amount == 40 && resources == 25)
+            return;
+
         if (resources >= amount)
         {
             Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
